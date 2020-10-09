@@ -67,11 +67,7 @@ class Sender {
   }
 
   queryClass(String time) async {
-    var data = await _dio.post("/jsxsd/framework/main_index_loadkb.jsp",
-        data: {"rq": time},
-        options: Options(
-          contentType: "application/x-www-form-urlencoded",
-        ));
+    var data = await _dio.post("jsxsd/xskb/xskb_list.do?sfFD=1&xnxq01id=2020-2021-1");
     print(data.data);
   }
 
