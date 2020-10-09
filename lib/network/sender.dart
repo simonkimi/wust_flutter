@@ -1,15 +1,21 @@
+import 'dart:io';
+
+import 'package:cookie_jar/cookie_jar.dart';
+import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 
 class Sender {
   static final Sender _sender = Sender._internal();
 
   Dio _dio;
   bool isLogin = false;
+  CookieJar cookieJar = CookieJar();
 
   factory Sender() => _sender;
 
   Sender._internal() {
-    this._dio = Dio()
+    _dio = Dio()
       ..options.baseUrl = "http://bkjx.wust.edu.cn/"
       ..options.headers = {
         "Accept-Encoding": "gzip, deflate",
@@ -19,24 +25,54 @@ class Sender {
         "X-Requested-With": "XMLHttpRequest",
       }
       ..options.connectTimeout = 10000
-      ..interceptors.add(LogInterceptor(requestBody: true));
+      ..interceptors.add(CookieManager(cookieJar));
+
+    this.isUseFiddler().then((value) {
+      if (value) {
+        (_dio.httpClientAdapter as DefaultHttpClientAdapter)
+            .onHttpClientCreate = (client) {
+          client.findProxy = (url) {
+            return "PROXY 192.168.2.199:8888";
+          };
+        };
+      }
+    });
   }
 
   login(String username, String password) async {
+    await _dio.get("");
+    // 第一次登录获取code
     var flagResponse = await _dio.post("Logon.do?method=logon&flag=sess",
         data: {"method": "logon", "flag": "sess"});
+    // 第二次登录发送密码
+    var response = await _dio.post("Logon.do?method=logon",
+        data: {
+          "userAccount": username,
+          "userPassword": "",
+          "encoded": encodePassword(flagResponse.data, "$username%%%$password")
+        },
+        options: Options(
+            contentType: "application/x-www-form-urlencoded",
+            validateStatus: (code) => code == 302,
+            followRedirects: false));
+    // 第三次登录重定向取cookie
+    var location = response.headers['location'][0];
+    response = await _dio.get(location,
+        options: Options(
+            validateStatus: (code) => code == 302, followRedirects: false));
 
-    var loginResponse = await _dio.post("Logon.do?method=logon", data: {
-      "userAccount": username,
-      "userPassword": "",
-      "encoded": encodePassword(flagResponse.data, "$username%%%$password")
-    });
-    print(loginResponse.isRedirect);
+    // 第四次登录进入主页
+    location = response.headers['location'][0];
+    await _dio.get(location);
   }
 
   queryClass(String time) async {
-    var data = await _dio
-        .post("/jsxsd/framework/main_index_loadkb.jsp", data: {"rq": time});
+    var data = await _dio.post("/jsxsd/framework/main_index_loadkb.jsp",
+        data: {"rq": time},
+        options: Options(
+          contentType: "application/x-www-form-urlencoded",
+        ));
+    print(data.data);
   }
 
   /// 编码密码
@@ -55,5 +91,18 @@ class Sender {
       }
     }
     return encoded;
+  }
+
+  Future<bool> isUseFiddler() async {
+    try {
+      bool debugMode = false;
+      assert(debugMode = true);
+      if (debugMode) {
+        Dio dio = Dio()..options.connectTimeout = 100;
+        await dio.get("http://192.168.2.199:8888");
+        return true;
+      }
+    } catch (e) {}
+    return false;
   }
 }

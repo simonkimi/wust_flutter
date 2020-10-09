@@ -12,10 +12,11 @@ mixin _LoginStateMixin<T extends StatefulWidget> on State<T> {
 
   Sender sender = Sender();
 
-  login() {
+  login() async {
     var username = usernameController.text;
     var password = passwordController.text;
-    sender.login(username, password);
+    await sender.login(username, password);
+    await sender.queryClass("2020-10-10");
   }
 }
 
@@ -46,7 +47,9 @@ class _LoginState extends State<LoginPage> with _LoginStateMixin {
             children: [
               SizedBox(height: 10),
               buildTitle(),
+              SizedBox(height: 10),
               buildInput(),
+              SizedBox(height: 25),
               buildLogin()
             ],
           ),
@@ -99,12 +102,18 @@ class _LoginState extends State<LoginPage> with _LoginStateMixin {
 
   Widget buildLogin() {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 40),
-      child: OutlinedButton(
-        onPressed: () {
-          login();
-        },
-        child: Text("登录"),
+      padding: const EdgeInsets.symmetric(horizontal: 90),
+      child: Row(
+        children: [
+          Expanded(
+            child: OutlinedButton(
+              onPressed: () {
+                login();
+              },
+              child: Text("登录"),
+            ),
+          ),
+        ],
       ),
     );
   }

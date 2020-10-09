@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.0
   dio: 3.0.10
+  dio_cookie_manager: ^1.0.0
+  cookie_jar: ^1.0.0
 
 dev_dependencies:
   flutter_test:
