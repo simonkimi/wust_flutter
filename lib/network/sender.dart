@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
@@ -8,6 +6,8 @@ import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 class Sender {
   static final Sender _sender = Sender._internal();
 
+  final fiddlerProxy = "PROXY 192.168.2.199:8888";
+
   Dio _dio;
   bool isLogin = false;
   CookieJar cookieJar = CookieJar();
@@ -15,6 +15,7 @@ class Sender {
   factory Sender() => _sender;
 
   Sender._internal() {
+    // ko no DIO da
     _dio = Dio()
       ..options.baseUrl = "http://bkjx.wust.edu.cn/"
       ..options.headers = {
@@ -31,9 +32,7 @@ class Sender {
       if (value) {
         (_dio.httpClientAdapter as DefaultHttpClientAdapter)
             .onHttpClientCreate = (client) {
-          client.findProxy = (url) {
-            return "PROXY 192.168.2.199:8888";
-          };
+          client.findProxy = (url) => fiddlerProxy;
         };
       }
     });
@@ -44,6 +43,7 @@ class Sender {
     // 第一次登录获取code
     var flagResponse = await _dio.post("Logon.do?method=logon&flag=sess",
         data: {"method": "logon", "flag": "sess"});
+
     // 第二次登录发送密码
     var response = await _dio.post("Logon.do?method=logon",
         data: {
@@ -55,6 +55,7 @@ class Sender {
             contentType: "application/x-www-form-urlencoded",
             validateStatus: (code) => code == 302,
             followRedirects: false));
+
     // 第三次登录重定向取cookie
     var location = response.headers['location'][0];
     response = await _dio.get(location,
@@ -67,7 +68,7 @@ class Sender {
   }
 
   queryClass(String time) async {
-    var data = await _dio.post("jsxsd/xskb/xskb_list.do?sfFD=1&xnxq01id=2020-2021-1");
+    var data = await _dio.post("jsxsd/xskb/xskb_list.do?sfFD=1&xnxq01id=$time");
     print(data.data);
   }
 
