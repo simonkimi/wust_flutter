@@ -2,34 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wuster/components/default_button.dart';
 import 'package:wuster/constants.dart';
+import 'package:wuster/pages/class_table.dart';
 
 class LoginPage extends StatelessWidget {
-  static String routeName = "/login";
+  static String routeName = "login";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: Text(
-          "登录",
-          style: TextStyle(
-            fontSize: 18,
-            color: Color(0xFF8B8B8B),
-          ),
+      appBar: buildAppBar(),
+      body: buildBody(),
+    );
+  }
+
+  Widget buildBody() {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          children: [
+            buildWelcome(),
+            SignForm(),
+          ],
         ),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: [
-              buildWelcome(),
-              SignForm(),
-            ],
-          ),
+    );
+  }
+
+  Widget buildAppBar() {
+    return AppBar(
+      centerTitle: true,
+      backgroundColor: Colors.white,
+      elevation: 0,
+      title: Text(
+        "登录",
+        style: TextStyle(
+          fontSize: 18,
+          color: Color(0xFF8B8B8B),
         ),
       ),
     );
@@ -80,7 +89,9 @@ class _SignFormState extends State<SignForm> {
           SizedBox(height: size.height * 0.08),
           DefaultButton(
             text: "登录",
-            press: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, ClassTimeTablePage.routeName);
+            },
           )
         ],
       ),

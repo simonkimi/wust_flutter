@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wuster/pages/class_table.dart';
 import 'package:wuster/pages/login.dart';
 import 'package:wuster/constants.dart';
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       home: LoginPage(),
       routes: {
         LoginPage.routeName: (context) => LoginPage(),
+        ClassTimeTablePage.routeName: (context) => ClassTimeTablePage()
       },
     );
   }

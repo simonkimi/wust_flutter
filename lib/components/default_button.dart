@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:wuster/constants.dart';
 
 class DefaultButton extends StatelessWidget {
-  const DefaultButton({Key key, this.text, this.press}) : super(key: key);
+  const DefaultButton({Key key, this.text, this.onPressed}) : super(key: key);
 
   final String text;
-  final Function press;
+  final Function onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class DefaultButton extends StatelessWidget {
       child: FlatButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         color: kPrimaryColor,
-        onPressed: press,
+        onPressed: onPressed,
         child: Text(
           text,
           style: TextStyle(

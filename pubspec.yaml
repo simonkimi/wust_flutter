@@ -24,6 +24,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/icons/
-    - assets/images/
+    - assets/icons/idcard.svg
+    - assets/icons/password.svg
+    - assets/images/setu.png
 
