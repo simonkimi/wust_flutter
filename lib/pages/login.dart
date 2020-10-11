@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wuster/components/default_button.dart';
 import 'package:wuster/constants.dart';
-import 'package:wuster/pages/class_table.dart';
+
+import 'class_table.dart';
+
 
 class LoginPage extends StatelessWidget {
   static String routeName = "login";

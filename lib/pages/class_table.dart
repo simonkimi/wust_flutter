@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wuster/constants.dart';
+import 'package:wuster/util/date_util.dart';
 import 'package:wuster/util/widget_util.dart';
 
 class ClassTimeTablePage extends StatefulWidget {
@@ -60,6 +61,7 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
     );
   }
 
+  /// 构建主体
   Widget buildBody() {
     return SafeArea(
       child: SizedBox(
@@ -76,6 +78,7 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
     );
   }
 
+  /// 构建课程表主体
   Expanded buildTableBody() {
     return Expanded(
       child: SingleChildScrollView(
@@ -100,6 +103,7 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
     );
   }
 
+  /// 构建左边的时间栏
   Expanded buildLiftWidget() {
     return Expanded(
       flex: leftFlex,
@@ -113,12 +117,12 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
     );
   }
 
-
+  /// 构建课程
   Widget buildClass(String className, String classroom) {
     return Container();
   }
 
-
+  /// 构建左边时间单位
   Container buildLeftTime(String startTime, String endTime) {
     var textStyle = TextStyle(fontSize: 10);
     return Container(
@@ -142,6 +146,7 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
     );
   }
 
+  /// 构建表头
   Widget buildTableHeader() {
     return Container(
       color: kTransportWhite,
@@ -153,21 +158,20 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
             flex: leftFlex,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [Text("10"), Text("月")],
+              children: [
+                Icon(
+                  Icons.calendar_today_outlined,
+                  size: 16,
+                )
+              ],
             ),
           ),
-          buildTableDate("MON", "3/3"),
-          buildTableDate("TUE", "3/4"),
-          buildTableDate("WEN", "3/5"),
-          buildTableDate("TUR", "3/6"),
-          buildTableDate("FRI", "3/7"),
-          buildTableDate("SAT", "3/9"),
-          buildTableDate("SUN", "3/10"),
-        ],
+        ]..addAll(getThisWeek().map((e) => buildTableDate(e[1], e[0]))),
       ),
     );
   }
 
+  /// 构建表头元素
   Widget buildTableDate(String week, String date) {
     return Expanded(
       flex: rightFlex,
@@ -186,12 +190,13 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
 
   List<Widget> buildLeftTimeList(String schoolState) {
     return createDivider(
-        kClassTime.map((e) {
-          var timeList = e[schoolState];
-          return buildLeftTime(timeList[0], timeList[1]);
-        }).toList(),
-        SizedBox(
-          height: classPadding,
-        ));
+      kClassTime.map((e) {
+        var timeList = e[schoolState];
+        return buildLeftTime(timeList[0], timeList[1]);
+      }).toList(),
+      SizedBox(
+        height: classPadding,
+      ),
+    );
   }
 }
