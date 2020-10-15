@@ -11,7 +11,6 @@ const kAnimationDuration = Duration(milliseconds: 250);
 const kTimeTableLeftFlex = 2;
 const kTimeTableRightFlex = 3;
 
-
 const kClassTimeRange = {
   "qs": [
     ["8:00", "9:40"],
@@ -21,7 +20,6 @@ const kClassTimeRange = {
     ["19:00", "20:40"],
     ["20:50", "22:30"],
   ],
-
   "hjh": [
     ["8:20", "10:00"],
     ["10:15", "11:55"],

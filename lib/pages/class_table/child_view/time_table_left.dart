@@ -3,14 +3,19 @@ import 'package:wuster/util/widget_util.dart';
 import 'package:wuster/constants.dart';
 
 class TimeTableLeft extends StatelessWidget {
+  final double classMainHeight;
+  final double classHeight;
+  final double classPadding;
+
+  const TimeTableLeft(
+      {Key key,
+      @required this.classMainHeight,
+      @required this.classHeight,
+      @required this.classPadding})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container();
-  }
-
-
-  /// 构建左边的时间栏
-  Expanded buildLiftWidget() {
     return Expanded(
       flex: kTimeTableLeftFlex,
       child: Container(
@@ -22,7 +27,6 @@ class TimeTableLeft extends StatelessWidget {
       ),
     );
   }
-
 
   /// 构建左边时间单位
   Container buildLeftTime(String startTime, String endTime) {
@@ -47,7 +51,6 @@ class TimeTableLeft extends StatelessWidget {
       ),
     );
   }
-
 
   List<Widget> buildLeftTimeList(String schoolState) {
     return createDivider(

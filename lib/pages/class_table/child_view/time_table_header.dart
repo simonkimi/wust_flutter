@@ -5,13 +5,12 @@ import 'package:wuster/constants.dart';
 class TimeTableHeader extends StatelessWidget {
   final DateTime dateTime;
 
-  TimeTableHeader(this.dateTime);
+  TimeTableHeader({Key key, @required this.dateTime}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: kTransportWhite,
-      width: double.infinity,
       height: 50,
       child: Row(
         children: [
@@ -27,7 +26,8 @@ class TimeTableHeader extends StatelessWidget {
               ],
             ),
           ),
-        ]..addAll(getThisWeek(this.dateTime).map((e) => buildTableDate(e[1], e[0]))),
+        ]..addAll(
+            getThisWeek(this.dateTime).map((e) => buildTableDate(e[1], e[0]))),
       ),
     );
   }

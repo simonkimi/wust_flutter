@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wuster/constants.dart';
-import 'package:wuster/pages/class_table/child_view/time_table_body.dart';
-import 'package:wuster/util/widget_util.dart';
+import 'package:wuster/pages/class_table/child_view/time_table_class.dart';
+import 'child_view/time_table_body.dart';
 import 'child_view/time_table_header.dart';
-
 
 class ClassTimeTablePage extends StatefulWidget {
   static String routeName = "classTimeTable";
@@ -14,6 +13,10 @@ class ClassTimeTablePage extends StatefulWidget {
 }
 
 mixin ClassTimeTablePageState<T extends StatefulWidget> on State<T> {
+  Size size;
+  double classHeight;
+  double classPadding;
+  double classMainHeight;
   var isTransport = false;
 
   setTransport() {
@@ -27,13 +30,6 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
     with ClassTimeTablePageState {
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery
-        .of(context)
-        .size;
-    classHeight = size.height / 6;
-    classPadding = kPrimaryPadding / 5;
-    classMainHeight = classHeight * 6 + classPadding * 5;
-
     return Scaffold(
       extendBodyBehindAppBar: isTransport,
       appBar: AppBar(
@@ -59,21 +55,6 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
 
   /// 构建主体
   Widget buildBody() {
-    return SafeArea(
-      child: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: Column(
-          children: [
-            TimeTableHeader(DateTime.now()),
-            SizedBox(height: 2),
-            TimeTableBody()
-          ],
-        ),
-      ),
-    );
+    return SafeArea(child: TimeTableBody());
   }
-
-
-
 }
