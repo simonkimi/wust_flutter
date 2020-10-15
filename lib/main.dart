@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wuster/pages/class_table.dart';
-import 'package:wuster/pages/login.dart';
+import 'file:///E:/Android-Project/project/wuster/lib/pages/class_table/class_table.dart';
+import 'file:///E:/Android-Project/project/wuster/lib/pages/login/login.dart';
 import 'package:wuster/constants.dart';
 
 void main() {
