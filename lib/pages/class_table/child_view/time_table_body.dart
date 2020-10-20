@@ -8,7 +8,6 @@ class TimeTableBody extends StatelessWidget {
     return Column(
       children: [
         TimeTableHeader(dateTime: DateTime.now()),
-        SizedBox(height: 2),
         TimeTableClass(),
       ],
     );

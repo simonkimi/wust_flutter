@@ -47,7 +47,7 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
         child: buildBody(),
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/images/l2.png"), fit: BoxFit.cover),
+              image: AssetImage("assets/images/setu.png"), fit: BoxFit.cover),
         ),
       ),
     );

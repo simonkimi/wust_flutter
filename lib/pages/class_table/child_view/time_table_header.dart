@@ -29,6 +29,7 @@ class TimeTableHeader extends StatelessWidget {
         ]..addAll(
             getThisWeek(this.dateTime).map((e) => buildTableDate(e[1], e[0]))),
       ),
+      margin: EdgeInsets.only(bottom: 2),
     );
   }
 

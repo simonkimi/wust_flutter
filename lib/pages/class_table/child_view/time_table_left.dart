@@ -18,12 +18,8 @@ class TimeTableLeft extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       flex: kTimeTableLeftFlex,
-      child: Container(
-        height: classMainHeight,
-        color: Colors.transparent,
-        child: Column(
-          children: buildLeftTimeList("qs"),
-        ),
+      child: Column(
+        children: buildLeftTimeList("qs"),
       ),
     );
   }

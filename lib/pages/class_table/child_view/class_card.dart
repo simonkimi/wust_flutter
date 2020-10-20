@@ -19,54 +19,31 @@ class ClassCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: classHeight,
-      color: background,
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            offset: getCardBoxShadowOffset(),
-            color: Color(0xffdfdfdf),
-            blurRadius: 20,
-          )
-        ],
-        borderRadius: getCardBorderRadius()
-      ),
-      margin: getCardMargin(),
-    );
-  }
-
-  Offset getCardBoxShadowOffset() {
-    switch (classDisplayType) {
-      case 0: // 普通课程, 右边下面显示阴影
-      case 1: // 两节课下面的课
-        return Offset(1, 1);
-      default: // 两节课上面的课以及中间的课
-        return Offset(1, 0);
+    var height = classHeight * classDisplayType;
+    if (classDisplayType > 1) {
+      height += (classDisplayType - 1) * classPadding;
     }
-  }
-
-  BorderRadius getCardBorderRadius() {
-    switch (classDisplayType) {
-      case 0: // 普通课程
-        return BorderRadius.all(Radius.circular(6));
-      case 1: // 上面课
-        return BorderRadius.vertical(top: Radius.circular(6));
-      case 2: // 下面课
-        return BorderRadius.vertical(top: Radius.circular(6));
-      default:
-        return BorderRadius.zero;
-    }
-  }
-
-  EdgeInsets getCardMargin() {
-    switch (classDisplayType) {
-      case 0: // 普通课程
-      case 2: // 下面课
-        return EdgeInsets.only(bottom: classPadding);
-      case 1: // 上面课, 中间课
-      default:
-        return EdgeInsets.zero;
+    if (classDisplayType != 0) {
+      return Opacity(
+        opacity: 0.8,
+        child: Container(
+          height: height,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: background,
+            boxShadow: [
+              BoxShadow(
+                offset: Offset(1, 1),
+                color: Color(0xffdfdfdf),
+              )
+            ],
+            borderRadius: BorderRadius.all(Radius.circular(6)),
+          ),
+          margin: EdgeInsets.only(bottom: classPadding),
+        ),
+      );
+    } else {
+      return Container();
     }
   }
 }

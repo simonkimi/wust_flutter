@@ -1,4 +1,5 @@
 import 'package:floor/floor.dart';
+import 'package:flutter/cupertino.dart';
 
 @entity
 class ClassModel {
@@ -18,6 +19,12 @@ class ClassModel {
     this.time,
     this.classRoom,
   );
+
+  ClassModel.build(
+      {this.id,
+      @required this.className,
+      @required this.teacher,
+      @required this.classId,
+      @required this.time,
+      @required this.classRoom});
 }
-
-
