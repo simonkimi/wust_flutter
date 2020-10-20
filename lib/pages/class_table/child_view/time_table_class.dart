@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:wuster/components/class_card_empty.dart';
 import 'package:wuster/constants.dart';
 import 'package:wuster/models/entity/class_model.dart';
 import 'package:wuster/pages/class_table/child_view/time_table_left.dart';
 
-import 'class_card.dart';
+import '../../../components/class_card.dart';
 
 class TimeTableClass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    var classHeight = size.height / 6;
-    var classPadding = kPrimaryPadding / 5;
-    var classMainHeight = classHeight * 6 + classPadding * 5;
+    var classCardHeight = size.height / 5;
+    var classCardPadding = kPrimaryPadding / 5;
+    var classMainHeight = classCardHeight * 6 + classCardPadding * 5;
 
     return Expanded(
       child: SingleChildScrollView(
@@ -19,88 +20,58 @@ class TimeTableClass extends StatelessWidget {
         child: Row(
           children: [
             TimeTableLeft(
-              classHeight: classHeight,
+              classCardHeight: classCardHeight,
               classMainHeight: classMainHeight,
-              classPadding: classPadding,
+              classCardPadding: classCardPadding,
             ),
             Expanded(
               flex: kTimeTableRightFlex,
               child: Column(
                 children: [
                   ClassCard(
-                    classPadding: classPadding,
-                    classDisplayType: 1,
-                    background: Color(0xFFFFFF00),
-                    classHeight: classHeight,
+                    classCardPadding: classCardPadding,
+                    classLength: 1,
+                    background: Colors.orange,
+                    classCardHeight: classCardHeight,
+                    isShow: true,
                     classModel: ClassModel.build(
                         classId: "1",
-                        className: "测试",
-                        classRoom: "101",
+                        className: "微机原理与应用实验",
+                        classRoom: "信息楼208",
+                        teacher: "梦之话",
+                        time: "1~10周",
+                        id: 1),
+                  ),
+                  ClassCardEmpty(
+                    classCardHeight: classCardHeight,
+                    classCardPadding: classCardPadding,
+                  ),
+                  ClassCard(
+                    classCardPadding: classCardPadding,
+                    classLength: 1,
+                    background: Colors.pink,
+                    classCardHeight: classCardHeight,
+                    classModel: ClassModel.build(
+                        classId: "1",
+                        className: "计算机网络及物联网技术",
+                        classRoom: "主楼211",
                         teacher: "测试",
                         time: "10~10",
                         id: 1),
                   ),
-                  ClassCard(
-                    classPadding: classPadding,
-                    classDisplayType: 4,
-                    background: Color(0xFFFFFF00),
-                    classHeight: classHeight,
-                    classModel: ClassModel.build(
-                        classId: "1",
-                        className: "测试",
-                        classRoom: "101",
-                        teacher: "测试",
-                        time: "10~10",
-                        id: 1),
+                  ClassCardEmpty(
+                    classCardHeight: classCardHeight,
+                    classCardPadding: classCardPadding,
                   ),
                   ClassCard(
-                    classPadding: classPadding,
-                    classDisplayType: 0,
-                    background: Color(0xFFFFFF00),
-                    classHeight: classHeight,
+                    classCardPadding: classCardPadding,
+                    classLength: 2,
+                    background: Colors.blue,
+                    classCardHeight: classCardHeight,
                     classModel: ClassModel.build(
                         classId: "1",
-                        className: "测试",
-                        classRoom: "101",
-                        teacher: "测试",
-                        time: "10~10",
-                        id: 1),
-                  ),
-                  ClassCard(
-                    classPadding: classPadding,
-                    classDisplayType: 0,
-                    background: Color(0xFFFFFF00),
-                    classHeight: classHeight,
-                    classModel: ClassModel.build(
-                        classId: "1",
-                        className: "测试",
-                        classRoom: "101",
-                        teacher: "测试",
-                        time: "10~10",
-                        id: 1),
-                  ),
-                  ClassCard(
-                    classPadding: classPadding,
-                    classDisplayType: 0,
-                    background: Color(0xFFFFFF00),
-                    classHeight: classHeight,
-                    classModel: ClassModel.build(
-                        classId: "1",
-                        className: "测试",
-                        classRoom: "101",
-                        teacher: "测试",
-                        time: "10~10",
-                        id: 1),
-                  ),
-                  ClassCard(
-                    classPadding: classPadding,
-                    classDisplayType: 1,
-                    background: Color(0xFFFFFF00),
-                    classHeight: classHeight,
-                    classModel: ClassModel.build(
-                        classId: "1",
-                        className: "测试",
-                        classRoom: "101",
+                        className: "金工实习",
+                        classRoom: "实验楼101",
                         teacher: "测试",
                         time: "10~10",
                         id: 1),

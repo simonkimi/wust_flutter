@@ -4,14 +4,14 @@ import 'package:wuster/constants.dart';
 
 class TimeTableLeft extends StatelessWidget {
   final double classMainHeight;
-  final double classHeight;
-  final double classPadding;
+  final double classCardHeight;
+  final double classCardPadding;
 
   const TimeTableLeft(
       {Key key,
       @required this.classMainHeight,
-      @required this.classHeight,
-      @required this.classPadding})
+      @required this.classCardHeight,
+      @required this.classCardPadding})
       : super(key: key);
 
   @override
@@ -28,7 +28,7 @@ class TimeTableLeft extends StatelessWidget {
   Container buildLeftTime(String startTime, String endTime) {
     var textStyle = TextStyle(fontSize: 10);
     return Container(
-      height: classHeight,
+      height: classCardHeight,
       width: double.infinity,
       color: kTransportWhite,
       child: Column(
@@ -54,7 +54,7 @@ class TimeTableLeft extends StatelessWidget {
           .map((e) => buildLeftTime(e[0], e[1]))
           .toList(),
       SizedBox(
-        height: classPadding,
+        height: classCardPadding,
       ),
     );
   }

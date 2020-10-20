@@ -17,7 +17,7 @@ mixin ClassTimeTablePageState<T extends StatefulWidget> on State<T> {
   double classHeight;
   double classPadding;
   double classMainHeight;
-  var isTransport = false;
+  var isTransport = true;
 
   setTransport() {
     setState(() {
@@ -33,14 +33,16 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
     return Scaffold(
       extendBodyBehindAppBar: isTransport,
       appBar: AppBar(
-        backgroundColor: isTransport ? Colors.transparent : kPrimaryColor,
+        backgroundColor: isTransport ? Colors.black26 : kPrimaryColor,
+        elevation: isTransport ? 0 : 4,
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-              icon: Icon(Icons.picture_as_pdf),
-              onPressed: () {
-                setTransport();
-              })
+            icon: Icon(Icons.picture_as_pdf),
+            onPressed: () {
+              setTransport();
+            },
+          ),
         ],
       ),
       body: Container(
