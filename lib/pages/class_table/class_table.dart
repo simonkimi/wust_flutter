@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wuster/constants.dart';
-import 'package:wuster/pages/class_table/child_view/time_table_class.dart';
+
 import 'child_view/time_table_body.dart';
-import 'child_view/time_table_header.dart';
 
 class ClassTimeTablePage extends StatefulWidget {
   static String routeName = "classTimeTable";
@@ -36,9 +35,13 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
         backgroundColor: isTransport ? Colors.black26 : kPrimaryColor,
         elevation: isTransport ? 0 : 4,
         automaticallyImplyLeading: false,
+        title: Text(
+          "我的课表",
+          style: TextStyle(fontSize: 20, color: Colors.white),
+        ),
         actions: [
           IconButton(
-            icon: Icon(Icons.picture_as_pdf),
+            icon: Icon(Icons.compare_arrows),
             onPressed: () {
               setTransport();
             },
