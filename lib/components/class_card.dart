@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wuster/components/icon_text.dart';
-import 'package:wuster/models/entity/class_model.dart';
+import 'package:wuster/models/entity/class_entity.dart';
 
 class ClassCard extends StatelessWidget {
-  final ClassModel classModel;
+  final ClassEntity classEntity;
   final double classCardHeight;
   final double classCardPadding;
   final Color background;
@@ -16,7 +16,7 @@ class ClassCard extends StatelessWidget {
     this.background = Colors.blue,
     this.classLength = 1,
     this.isShow = false,
-    @required this.classModel,
+    @required this.classEntity,
     @required this.classCardHeight,
     @required this.classCardPadding,
   }) : super(key: key);
@@ -49,7 +49,7 @@ class ClassCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                classModel.className,
+                classEntity.className,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
@@ -61,7 +61,7 @@ class ClassCard extends StatelessWidget {
                 height: 5,
               ),
               IconText(
-                classModel.classRoom,
+                classEntity.classRoom,
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 icon: Icon(Icons.location_on),

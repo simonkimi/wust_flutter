@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wuster/constants.dart';
 
-import 'child_view/time_table_body.dart';
+import 'package:wuster/pages/class_table/child_view/time_table_body.dart';
 
 class ClassTimeTablePage extends StatefulWidget {
   static String routeName = "classTimeTable";

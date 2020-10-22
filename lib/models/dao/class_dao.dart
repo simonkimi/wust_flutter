@@ -1,11 +1,11 @@
 import 'package:floor/floor.dart';
-import 'package:wuster/models/entity/class_model.dart';
+import 'package:wuster/models/entity/class_entity.dart';
 
 @dao
 abstract class ClassModelDao {
-  @Query("SELECT * FROM ClassModel")
-  Future<List<ClassModel>> getAll();
+  @Query("SELECT * FROM ClassEntity")
+  Future<List<ClassEntity>> getAll();
 
   @insert
-  Future<void> insertModel(ClassModel classModel);
+  Future<void> insertModel(ClassEntity classEntity);
 }

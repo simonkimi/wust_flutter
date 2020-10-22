@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wuster/components/class_card_empty.dart';
 import 'package:wuster/constants.dart';
-import 'package:wuster/models/entity/class_model.dart';
+import 'package:wuster/models/entity/class_entity.dart';
 import 'package:wuster/pages/class_table/child_view/time_table_left.dart';
 
 import '../../../components/class_card.dart';
@@ -34,12 +34,13 @@ class TimeTableClass extends StatelessWidget {
                     background: Colors.orange,
                     classCardHeight: classCardHeight,
                     isShow: true,
-                    classModel: ClassModel.build(
+                    classEntity: ClassEntity.build(
                         classId: "1",
                         className: "微机原理与应用实验",
                         classRoom: "信息楼208",
                         teacher: "梦之话",
-                        time: "1~10周",
+                        startWeek: 1,
+                        endWeek: 10,
                         id: 1),
                   ),
                   ClassCardEmpty(
@@ -51,12 +52,13 @@ class TimeTableClass extends StatelessWidget {
                     classLength: 1,
                     background: Colors.pink,
                     classCardHeight: classCardHeight,
-                    classModel: ClassModel.build(
+                    classEntity: ClassEntity.build(
                         classId: "1",
                         className: "计算机网络及物联网技术",
                         classRoom: "主楼211",
                         teacher: "测试",
-                        time: "10~10",
+                        startWeek: 1,
+                        endWeek: 10,
                         id: 1),
                   ),
                   ClassCardEmpty(
@@ -68,12 +70,13 @@ class TimeTableClass extends StatelessWidget {
                     classLength: 2,
                     background: Colors.blue,
                     classCardHeight: classCardHeight,
-                    classModel: ClassModel.build(
+                    classEntity: ClassEntity.build(
                         classId: "1",
                         className: "金工实习",
                         classRoom: "实验楼101",
                         teacher: "测试",
-                        time: "10~10",
+                        startWeek: 1,
+                        endWeek: 10,
                         id: 1),
                   ),
                 ],
