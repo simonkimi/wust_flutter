@@ -14,7 +14,7 @@ class ClassEntity {
   final int endWeek;
   final int week;
   final int startTime;
-  final int endTime;
+  final int lastTime;
 
   ClassEntity(
     this.id,
@@ -26,7 +26,7 @@ class ClassEntity {
     this.endWeek,
     this.week,
     this.startTime,
-    this.endTime,
+    this.lastTime,
   );
 
   ClassEntity.build({
@@ -39,6 +39,6 @@ class ClassEntity {
     @required this.endWeek,
     @required this.classRoom,
     @required this.startTime,
-    @required this.endTime,
+    @required this.lastTime,
   });
 }
