@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wuster/util/widget_util.dart';
 import 'package:wuster/constants.dart';
+import 'package:wuster/themes/theme_helper.dart';
 
 class TimeTableLeft extends StatelessWidget {
   final double classMainHeight;
@@ -19,18 +20,18 @@ class TimeTableLeft extends StatelessWidget {
     return Expanded(
       flex: kTimeTableLeftFlex,
       child: Column(
-        children: buildLeftTimeList("qs"),
+        children: buildLeftTimeList(context, "qs"),
       ),
     );
   }
 
   /// 构建左边时间单位
-  Container buildLeftTime(String startTime, String endTime) {
+  Container buildLeftTime(BuildContext context, String startTime, String endTime) {
     var textStyle = TextStyle(fontSize: 10);
     return Container(
       height: classCardHeight,
       width: double.infinity,
-      color: kTransportWhite,
+      color: accordingToTheme(context, Colors.white24, Colors.white10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -48,10 +49,10 @@ class TimeTableLeft extends StatelessWidget {
     );
   }
 
-  List<Widget> buildLeftTimeList(String schoolState) {
+  List<Widget> buildLeftTimeList(BuildContext context, String schoolState) {
     return createDivider(
       kClassTimeRange[schoolState]
-          .map((e) => buildLeftTime(e[0], e[1]))
+          .map((e) => buildLeftTime(context, e[0], e[1]))
           .toList(),
       SizedBox(
         height: classCardPadding,

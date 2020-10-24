@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wuster/constants.dart';
 import 'package:wuster/pages/login/child_view/welcome.dart';
+import 'package:wuster/themes/theme_helper.dart';
 import 'child_view/sign_form.dart';
 
 class LoginPage extends StatelessWidget {
@@ -9,7 +9,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: buildAppBar(context),
       body: buildBody(),
     );
   }
@@ -28,11 +28,12 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget buildAppBar() {
+  Widget buildAppBar(BuildContext context) {
     return AppBar(
       centerTitle: true,
-      backgroundColor: Colors.white,
       elevation: 0,
+      backgroundColor: accordingToTheme(
+          context, Colors.white, Theme.of(context).primaryColor),
       title: Text(
         "登录",
         style: TextStyle(
@@ -43,5 +44,3 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-
-

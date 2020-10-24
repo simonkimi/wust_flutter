@@ -111,6 +111,22 @@ class _$ClassModelDao extends ClassModelDao {
                   'week': item.week,
                   'startTime': item.startTime,
                   'lastTime': item.lastTime
+                }),
+        _classEntityDeletionAdapter = DeletionAdapter(
+            database,
+            'ClassEntity',
+            ['id'],
+            (ClassEntity item) => <String, dynamic>{
+                  'id': item.id,
+                  'className': item.className,
+                  'teacher': item.teacher,
+                  'classId': item.classId,
+                  'classRoom': item.classRoom,
+                  'startWeek': item.startWeek,
+                  'endWeek': item.endWeek,
+                  'week': item.week,
+                  'startTime': item.startTime,
+                  'lastTime': item.lastTime
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -133,6 +149,8 @@ class _$ClassModelDao extends ClassModelDao {
 
   final InsertionAdapter<ClassEntity> _classEntityInsertionAdapter;
 
+  final DeletionAdapter<ClassEntity> _classEntityDeletionAdapter;
+
   @override
   Future<List<ClassEntity>> getAll() async {
     return _queryAdapter.queryList('SELECT * FROM ClassEntity',
@@ -140,8 +158,18 @@ class _$ClassModelDao extends ClassModelDao {
   }
 
   @override
+  Future<void> deleteAllModel() async {
+    await _queryAdapter.queryNoReturn('DELETE * FROM ClassEntity');
+  }
+
+  @override
   Future<void> insertModel(ClassEntity classEntity) async {
     await _classEntityInsertionAdapter.insert(
         classEntity, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<void> deleteModel(ClassEntity classEntity) async {
+    await _classEntityDeletionAdapter.delete(classEntity);
   }
 }

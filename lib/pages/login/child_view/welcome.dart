@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wuster/constants.dart';
 
 class Welcome extends StatelessWidget {
   @override
@@ -8,15 +7,11 @@ class Welcome extends StatelessWidget {
       width: double.infinity,
       child: Column(
         children: [
-          Text(
-            "欢迎回来",
-            style: TextStyle(
-                color: Colors.black, fontSize: 28, fontWeight: FontWeight.bold),
-          ),
+          Text("欢迎回来", style: Theme.of(context).textTheme.headline1),
           Text(
             "请使用新版教务系统学号和密码登录",
             textAlign: TextAlign.center,
-            style: TextStyle(color: kTextColor),
+            style: Theme.of(context).textTheme.subtitle1,
           )
         ],
       ),

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:wuster/constants.dart';
-
+import 'package:wuster/themes/theme_helper.dart';
 import 'package:wuster/pages/class_table/child_view/time_table_body.dart';
 
 class ClassTimeTablePage extends StatefulWidget {
@@ -32,7 +31,8 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
     return Scaffold(
       extendBodyBehindAppBar: isTransport,
       appBar: AppBar(
-        backgroundColor: isTransport ? Colors.black26 : kPrimaryColor,
+        backgroundColor:
+            isTransport ? Colors.black26 : Theme.of(context).primaryColor,
         elevation: isTransport ? 0 : 4,
         automaticallyImplyLeading: false,
         title: Text(
@@ -50,10 +50,13 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
       ),
       body: Container(
         child: buildBody(),
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/setu.png"), fit: BoxFit.cover),
-        ),
+        decoration: Theme.of(context).brightness == Brightness.light
+            ? BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/images/setu.png"),
+                    fit: BoxFit.cover),
+              )
+            : BoxDecoration(),
       ),
     );
   }

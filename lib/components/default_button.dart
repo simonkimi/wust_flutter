@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wuster/constants.dart';
+import 'package:wuster/themes/theme_helper.dart';
 
 class DefaultButton extends StatelessWidget {
   const DefaultButton({Key key, this.text, this.onPressed}) : super(key: key);
@@ -14,13 +14,13 @@ class DefaultButton extends StatelessWidget {
       height: 56,
       child: FlatButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        color: kPrimaryColor,
+        color: Theme.of(context).buttonColor,
         onPressed: onPressed,
         child: Text(
           text,
           style: TextStyle(
             fontSize: 18,
-            color: Colors.white,
+            color: accordingToTheme(context, Colors.white, Color(0xFFEFEFEF))
           ),
         ),
       ),

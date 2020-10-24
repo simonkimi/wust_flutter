@@ -53,12 +53,12 @@ class ClassCard extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: 11,
+                  fontSize: 10,
                   color: Colors.white,
                 ),
               ),
               SizedBox(
-                height: 5,
+                height: 3,
               ),
               IconText(
                 classEntity.classRoom,
@@ -66,7 +66,7 @@ class ClassCard extends StatelessWidget {
                 textAlign: TextAlign.center,
                 icon: Icon(Icons.location_on),
                 style: TextStyle(
-                  fontSize: 11,
+                  fontSize: 10,
                   color: Colors.white,
                 ),
                 iconPadding: EdgeInsets.only(bottom: 0.5),

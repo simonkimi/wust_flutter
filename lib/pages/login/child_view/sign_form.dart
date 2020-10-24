@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wuster/components/default_button.dart';
 import 'package:wuster/pages/class_table/class_table.dart';
-import 'package:wuster/constants.dart';
 
 class SignForm extends StatefulWidget {
   SignForm({Key key}) : super(key: key);
@@ -45,12 +44,12 @@ class _SignFormState extends State<SignForm> {
         contentPadding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
-          borderSide: BorderSide(color: kTextColor),
+          borderSide: BorderSide(color: Theme.of(context).dividerTheme.color),
           gapPadding: 10,
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
-          borderSide: BorderSide(color: kTextColor),
+          borderSide: BorderSide(color: Theme.of(context).dividerTheme.color),
           gapPadding: 10,
         ),
         suffixIcon: Padding(
@@ -70,12 +69,12 @@ class _SignFormState extends State<SignForm> {
         contentPadding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
-          borderSide: BorderSide(color: kTextColor),
+          borderSide: BorderSide(color: Theme.of(context).dividerTheme.color),
           gapPadding: 10,
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
-          borderSide: BorderSide(color: kTextColor),
+          borderSide: BorderSide(color: Theme.of(context).dividerTheme.color),
           gapPadding: 10,
         ),
         suffixIcon: Padding(
