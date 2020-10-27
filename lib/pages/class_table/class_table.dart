@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:wuster/themes/theme_helper.dart';
 import 'package:wuster/pages/class_table/child_view/time_table_body.dart';
 
 class ClassTimeTablePage extends StatefulWidget {
@@ -11,10 +10,6 @@ class ClassTimeTablePage extends StatefulWidget {
 }
 
 mixin ClassTimeTablePageState<T extends StatefulWidget> on State<T> {
-  Size size;
-  double classHeight;
-  double classPadding;
-  double classMainHeight;
   var isTransport = true;
 
   setTransport() {
@@ -46,6 +41,23 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
               setTransport();
             },
           ),
+          PopupMenuButton(
+            itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
+              PopupMenuItem(
+                  child: buildPopupMenuItem(
+                      context, "refresh", Icons.refresh, "刷新课表")),
+              PopupMenuItem(
+                  child: buildPopupMenuItem(
+                      context, "selectTerm", Icons.wysiwyg, "选择学期")),
+              PopupMenuItem(
+                  child: buildPopupMenuItem(
+                      context, "setThisWeek", Icons.settings, "修改本周时间")),
+              PopupMenuItem(
+                  child: buildPopupMenuItem(
+                      context, "setTheme", Icons.color_lens, "设置主题")),
+            ],
+            onSelected: (String data) {},
+          ),
         ],
       ),
       body: Container(
@@ -64,5 +76,18 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
   /// 构建主体
   Widget buildBody() {
     return SafeArea(child: TimeTableBody());
+  }
+
+  Widget buildPopupMenuItem(
+      BuildContext context, String id, IconData iconData, String text) {
+    return Row(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(right: 10),
+          child: Icon(iconData, color: Theme.of(context).accentColor),
+        ),
+        Text(text)
+      ],
+    );
   }
 }

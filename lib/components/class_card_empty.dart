@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:wuster/pages/class_table/child_view/card_space.dart';
 
 class ClassCardEmpty extends StatefulWidget {
-  final double classCardHeight;
-  final double classCardPadding;
-
-  const ClassCardEmpty(
-      {Key key,
-      @required this.classCardHeight,
-      @required this.classCardPadding})
-      : super(key: key);
-
   @override
   _ClassCardEmptyState createState() => _ClassCardEmptyState();
 }
@@ -39,11 +31,14 @@ class _ClassCardEmptyState extends State<ClassCardEmpty>
 
   @override
   Widget build(BuildContext context) {
+    var classCardHeight = InheritedClassSpaceWidget.of(context).classCardHeight;
+    var classCardPadding =
+        InheritedClassSpaceWidget.of(context).classCardPadding;
     return GestureDetector(
       child: FadeTransition(
         child: Container(
-          height: widget.classCardHeight,
-          margin: EdgeInsets.only(bottom: widget.classCardPadding),
+          height: classCardHeight,
+          margin: EdgeInsets.only(bottom: classCardPadding),
           decoration: BoxDecoration(
             color: Colors.white70,
             borderRadius: BorderRadius.all(Radius.circular(6)),

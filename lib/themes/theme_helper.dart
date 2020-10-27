@@ -28,12 +28,12 @@ final darkTheme = ThemeData(
   brightness: Brightness.dark,
   buttonColor: Colors.purple[300],
   primaryColor: Color(0xFF1c1c1c),
-  accentColor: Colors.purpleAccent[100],
+  accentColor: Colors.purpleAccent,
   scaffoldBackgroundColor: Color(0xFF121212),
   textTheme: TextTheme(
     headline1: TextStyle(
-        color: Color(0xFF7F7F7F), fontSize: 28, fontWeight: FontWeight.bold),
-    subtitle1: TextStyle(color: Color(0xFF757575)),
+        color: Color(0xFFB7B7B7), fontSize: 28, fontWeight: FontWeight.bold),
+    subtitle1: TextStyle(color: Color(0xFFB7B7B7)),
   ),
   dividerTheme: DividerThemeData(color: Color(0xFF757575)),
 );

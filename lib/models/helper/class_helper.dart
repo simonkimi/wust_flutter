@@ -28,7 +28,7 @@ List<ClassEntity> parseClassFromHtml(String html) {
           classTimeRaw.substring(0, classTimeRaw.indexOf("(周)")).split(",");
       var classId = tagMap["课堂名称"] ?? "未命名";
       var classTeacher = tagMap["老师"] ?? "";
-      var classRoom = tagMap["教室"] ?? "未定义";
+      var classRoom = tagMap["教室"] ?? "";
       var classTime = classTimeRaw
           .substring(
               classTimeRaw.indexOf("[") + 1, classTimeRaw.indexOf("]") - 1)
@@ -39,21 +39,26 @@ List<ClassEntity> parseClassFromHtml(String html) {
           (((int.parse(classTime[1]) - int.parse(classTime[0])) + 1) / 2)
               .round();
 
-      classWeek.forEach((week) {
-        var times = week.split("-");
-        var startWeek = int.parse(times[0]);
-        var endWeek = int.parse(times[1]);
-        result.add(ClassEntity.build(
-            week: timeWeek,
-            className: className,
-            teacher: classTeacher,
-            classId: classId,
-            startWeek: startWeek,
-            endWeek: endWeek,
-            classRoom: classRoom,
-            startTime: timeStartTime,
-            lastTime: timeLastTime));
-      });
+      classWeek.forEach(
+        (week) {
+          var times = week.split("-");
+          var startWeek = int.parse(times[0]);
+          var endWeek = int.parse(times[1]);
+          result.add(
+            ClassEntity.build(
+              weekday: timeWeek,
+              className: className,
+              teacher: classTeacher,
+              classId: classId,
+              startWeek: startWeek,
+              endWeek: endWeek,
+              classRoom: classRoom,
+              startTime: timeStartTime,
+              lastTime: timeLastTime,
+            ),
+          );
+        },
+      );
     });
     timeWeek += 1;
     if (timeWeek >= 8) {

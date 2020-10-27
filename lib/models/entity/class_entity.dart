@@ -12,7 +12,7 @@ class ClassEntity {
 
   final int startWeek;
   final int endWeek;
-  final int week;
+  final int weekday;  // 几星期
   final int startTime;
   final int lastTime;
 
@@ -24,14 +24,14 @@ class ClassEntity {
     this.classRoom,
     this.startWeek,
     this.endWeek,
-    this.week,
+    this.weekday,
     this.startTime,
     this.lastTime,
   );
 
   ClassEntity.build({
     this.id,
-    @required this.week,
+    @required this.weekday,
     @required this.className,
     @required this.teacher,
     @required this.classId,

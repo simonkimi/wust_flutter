@@ -26,15 +26,14 @@ class TimeTableHeader extends StatelessWidget {
               ],
             ),
           ),
-        ]..addAll(buildTableDate(context)),
+        ]..addAll(buildTableDate(context, 7)),
       ),
     );
   }
 
-  List<Widget> buildTableDate(BuildContext context) {
-    var today = DateTime.now();
+  List<Widget> buildTableDate(BuildContext context, startWeekday) {
     var week = ["", "周一", "周二", "周三", "周四", "周五", "周六", "周日"];
-    return getThisWeek(this.dateTime)
+    return getThisWeek(this.dateTime, startWeekday)
         .map<Widget>((e) => buildTableDateCell(context, week[e.weekday],
             "${e.month}/${e.day}", isSameDay(e, this.dateTime)))
         .toList();

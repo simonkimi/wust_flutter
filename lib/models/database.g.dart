@@ -80,7 +80,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `ClassEntity` (`id` INTEGER, `className` TEXT, `teacher` TEXT, `classId` TEXT, `classRoom` TEXT, `startWeek` INTEGER, `endWeek` INTEGER, `week` INTEGER, `startTime` INTEGER, `lastTime` INTEGER, PRIMARY KEY (`id`))');
+            'CREATE TABLE IF NOT EXISTS `ClassEntity` (`id` INTEGER, `className` TEXT, `teacher` TEXT, `classId` TEXT, `classRoom` TEXT, `startWeek` INTEGER, `endWeek` INTEGER, `weekday` INTEGER, `startTime` INTEGER, `lastTime` INTEGER, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -108,7 +108,7 @@ class _$ClassModelDao extends ClassModelDao {
                   'classRoom': item.classRoom,
                   'startWeek': item.startWeek,
                   'endWeek': item.endWeek,
-                  'week': item.week,
+                  'weekday': item.weekday,
                   'startTime': item.startTime,
                   'lastTime': item.lastTime
                 }),
@@ -124,7 +124,7 @@ class _$ClassModelDao extends ClassModelDao {
                   'classRoom': item.classRoom,
                   'startWeek': item.startWeek,
                   'endWeek': item.endWeek,
-                  'week': item.week,
+                  'weekday': item.weekday,
                   'startTime': item.startTime,
                   'lastTime': item.lastTime
                 });
@@ -143,7 +143,7 @@ class _$ClassModelDao extends ClassModelDao {
       row['classRoom'] as String,
       row['startWeek'] as int,
       row['endWeek'] as int,
-      row['week'] as int,
+      row['weekday'] as int,
       row['startTime'] as int,
       row['lastTime'] as int);
 

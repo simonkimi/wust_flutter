@@ -3,18 +3,9 @@ import 'package:wuster/util/widget_util.dart';
 import 'package:wuster/constants.dart';
 import 'package:wuster/themes/theme_helper.dart';
 
+import 'card_space.dart';
+
 class TimeTableLeft extends StatelessWidget {
-  final double classMainHeight;
-  final double classCardHeight;
-  final double classCardPadding;
-
-  const TimeTableLeft(
-      {Key key,
-      @required this.classMainHeight,
-      @required this.classCardHeight,
-      @required this.classCardPadding})
-      : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -28,6 +19,7 @@ class TimeTableLeft extends StatelessWidget {
   /// 构建左边时间单位
   Container buildLeftTime(BuildContext context, String startTime, String endTime) {
     var textStyle = TextStyle(fontSize: 10);
+    var classCardHeight = InheritedClassSpaceWidget.of(context).classCardHeight;
     return Container(
       height: classCardHeight,
       width: double.infinity,
@@ -50,6 +42,7 @@ class TimeTableLeft extends StatelessWidget {
   }
 
   List<Widget> buildLeftTimeList(BuildContext context, String schoolState) {
+    var classCardPadding = InheritedClassSpaceWidget.of(context).classCardPadding;
     return createDivider(
       kClassTimeRange[schoolState]
           .map((e) => buildLeftTime(context, e[0], e[1]))
