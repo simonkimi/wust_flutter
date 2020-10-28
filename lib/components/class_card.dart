@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wuster/components/icon_text.dart';
 import 'package:wuster/models/entity/class_entity.dart';
-import 'package:wuster/pages/class_table/child_view/card_space.dart';
+import 'package:wuster/pages/class_table/child_view/card_space_widget.dart';
 
 class ClassCard extends StatelessWidget {
   final ClassEntity classEntity;

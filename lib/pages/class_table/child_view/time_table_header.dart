@@ -4,8 +4,10 @@ import 'package:wuster/themes/theme_helper.dart';
 
 class TimeTableHeader extends StatelessWidget {
   final DateTime dateTime;
+  final int headerStartWeek;
 
-  TimeTableHeader({Key key, @required this.dateTime}) : super(key: key);
+  TimeTableHeader({Key key, @required this.dateTime, this.headerStartWeek = 1})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class TimeTableHeader extends StatelessWidget {
               ],
             ),
           ),
-        ]..addAll(buildTableDate(context, 7)),
+        ]..addAll(buildTableDate(context, headerStartWeek)),
       ),
     );
   }
@@ -61,7 +63,8 @@ class TimeTableHeader extends StatelessWidget {
         margin: EdgeInsets.all(3),
         decoration: isHighLight
             ? BoxDecoration(
-                color: accordingToTheme(context, Colors.white54, Colors.black87),
+                color:
+                    accordingToTheme(context, Colors.white54, Colors.black87),
                 borderRadius: BorderRadius.all(Radius.circular(6)),
               )
             : BoxDecoration(),

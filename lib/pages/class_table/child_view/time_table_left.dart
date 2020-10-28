@@ -3,7 +3,7 @@ import 'package:wuster/util/widget_util.dart';
 import 'package:wuster/constants.dart';
 import 'package:wuster/themes/theme_helper.dart';
 
-import 'card_space.dart';
+import 'card_space_widget.dart';
 
 class TimeTableLeft extends StatelessWidget {
   @override

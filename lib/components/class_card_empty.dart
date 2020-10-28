@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wuster/pages/class_table/child_view/card_space.dart';
+import 'package:wuster/pages/class_table/child_view/card_space_widget.dart';
 
 class ClassCardEmpty extends StatefulWidget {
   @override
@@ -56,13 +56,10 @@ class _ClassCardEmptyState extends State<ClassCardEmpty>
       onTapDown: (details) {
         cardShowController.forward();
       },
-      onTapUp: (details) {
-        cardShowController.reverse();
-      },
       onLongPress: () {
         print("Long Press");
       },
-      onLongPressEnd: (_) {
+      onPanCancel: () {
         cardShowController.reverse();
       },
     );

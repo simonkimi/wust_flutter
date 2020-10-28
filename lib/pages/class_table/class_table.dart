@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:wuster/models/entity/class_entity.dart';
 import 'package:wuster/pages/class_table/child_view/time_table_body.dart';
 
 class ClassTimeTablePage extends StatefulWidget {
@@ -65,8 +66,9 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
         decoration: Theme.of(context).brightness == Brightness.light
             ? BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("assets/images/setu.png"),
-                    fit: BoxFit.cover),
+                  image: AssetImage("assets/images/setu.png"),
+                  fit: BoxFit.cover,
+                ),
               )
             : BoxDecoration(),
       ),
@@ -75,7 +77,80 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
 
   /// 构建主体
   Widget buildBody() {
-    return SafeArea(child: TimeTableBody());
+    return SafeArea(
+      child: TimeTableBody(
+        dateTime: DateTime.now(),
+        thisWeek: 1,
+        classLists: [
+          ClassEntity.build(
+            className: "电力电子技术",
+            weekday: 1,
+            teacher: "郑秀娟",
+            classId: "教学班0513",
+            startWeek: 1,
+            endWeek: 4,
+            classRoom: "主楼411",
+            startTime: 1,
+            lastTime: 1,
+          ),
+          ClassEntity.build(
+            className: "电力电子技术",
+            weekday: 3,
+            teacher: "郑秀娟",
+            classId: "教学班0513",
+            startWeek: 1,
+            endWeek: 4,
+            classRoom: "主楼211",
+            startTime: 1,
+            lastTime: 1,
+          ),
+          ClassEntity.build(
+            className: "微机原理与应用",
+            weekday: 2,
+            teacher: "蒋峥",
+            classId: "教学班0503",
+            startWeek: 1,
+            endWeek: 4,
+            classRoom: "主楼311",
+            startTime: 2,
+            lastTime: 1,
+          ),
+          ClassEntity.build(
+            className: "微机原理与应用",
+            weekday: 4,
+            teacher: "蒋峥",
+            classId: "教学班0503",
+            startWeek: 1,
+            endWeek: 4,
+            classRoom: "主楼311",
+            startTime: 2,
+            lastTime: 1,
+          ),
+          ClassEntity.build(
+            className: "自动控制原理",
+            weekday: 1,
+            teacher: "柴利",
+            classId: "教学班0508",
+            startWeek: 1,
+            endWeek: 4,
+            classRoom: "主楼312",
+            startTime: 3,
+            lastTime: 1,
+          ),
+          ClassEntity.build(
+            className: "自动控制原理",
+            weekday: 3,
+            teacher: "柴利",
+            classId: "教学班0508",
+            startWeek: 1,
+            endWeek: 4,
+            classRoom: "主楼213",
+            startTime: 3,
+            lastTime: 1,
+          ),
+        ],
+      ),
+    );
   }
 
   Widget buildPopupMenuItem(
