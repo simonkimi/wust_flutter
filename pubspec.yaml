@@ -1,5 +1,5 @@
-name: wuster
-description: A new Flutter application.
+name: wust_life
+description: "武汉科技大学生活app"
 
 
 version: 1.0.0+1
@@ -17,7 +17,7 @@ dependencies:
   flutter_svg: any
   floor: ^0.14.0
   html: ^0.14.0+4
-  uuid: 2.2.2
+  crypto: ^2.1.5
 
 dev_dependencies:
   flutter_test:

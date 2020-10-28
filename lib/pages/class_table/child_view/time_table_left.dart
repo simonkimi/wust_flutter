@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:wuster/util/widget_util.dart';
-import 'package:wuster/constants.dart';
-import 'package:wuster/themes/theme_helper.dart';
+import 'package:wust_life/util/widget_util.dart';
+import 'package:wust_life/constants.dart';
+import 'package:wust_life/themes/theme_helper.dart';
 
 import 'card_space_widget.dart';
 

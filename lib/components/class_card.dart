@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:wuster/components/icon_text.dart';
-import 'package:wuster/models/entity/class_entity.dart';
-import 'package:wuster/pages/class_table/child_view/card_space_widget.dart';
+import 'package:wust_life/components/icon_text.dart';
+import 'package:wust_life/models/entity/class_entity.dart';
+import 'package:wust_life/pages/class_table/child_view/card_space_widget.dart';
 
 class ClassCard extends StatelessWidget {
   final ClassEntity classEntity;
@@ -51,6 +51,7 @@ class ClassCard extends StatelessWidget {
               Text(
                 classEntity.className,
                 textAlign: TextAlign.center,
+                maxLines: 4,
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 10,
@@ -60,16 +61,19 @@ class ClassCard extends StatelessWidget {
               SizedBox(
                 height: 3,
               ),
-              IconText(
-                classEntity.classRoom,
-                maxLines: 2,
-                textAlign: TextAlign.center,
-                icon: Icon(Icons.location_on),
-                style: TextStyle(
-                  fontSize: 10,
-                  color: Colors.white,
+              Offstage(
+                offstage: classEntity.classRoom.isEmpty,
+                child: IconText(
+                  classEntity.classRoom,
+                  maxLines: 3,
+                  textAlign: TextAlign.center,
+                  icon: Icon(Icons.location_on),
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: Colors.white,
+                  ),
+                  iconPadding: EdgeInsets.only(bottom: 0.5),
                 ),
-                iconPadding: EdgeInsets.only(bottom: 0.5),
               ),
             ],
           ),

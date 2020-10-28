@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wuster/components/default_button.dart';
-import 'package:wuster/pages/class_table/class_table.dart';
+import 'package:wust_life/components/default_button.dart';
+import 'package:wust_life/pages/class_table/class_table.dart';
 
 class SignForm extends StatefulWidget {
   SignForm({Key key}) : super(key: key);

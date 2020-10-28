@@ -1,4 +1,4 @@
-import 'package:wuster/models/database.dart';
+import 'package:wust_life/models/database.dart';
 
 class DatabaseHelper {
   static final DatabaseHelper _databaseHelper = DatabaseHelper._internal();

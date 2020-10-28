@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wuster/themes/theme_helper.dart';
+import 'package:wust_life/themes/theme_helper.dart';
 
 class DefaultButton extends StatelessWidget {
   const DefaultButton({Key key, this.text, this.onPressed}) : super(key: key);

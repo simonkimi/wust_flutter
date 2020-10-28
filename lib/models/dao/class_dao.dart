@@ -1,5 +1,5 @@
 import 'package:floor/floor.dart';
-import 'package:wuster/models/entity/class_entity.dart';
+import 'package:wust_life/models/entity/class_entity.dart';
 
 @dao
 abstract class ClassModelDao {

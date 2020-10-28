@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:wuster/components/class_card_empty.dart';
-import 'package:wuster/models/entity/class_entity.dart';
-import 'package:wuster/pages/class_table/child_view/time_table_left.dart';
-import 'package:wuster/themes/theme_helper.dart';
-import 'package:wuster/components/class_card.dart';
-import 'package:wuster/util/date_util.dart';
+import 'package:wust_life/components/class_card_empty.dart';
+import 'package:wust_life/models/entity/class_entity.dart';
+import 'package:wust_life/pages/class_table/child_view/time_table_left.dart';
+import 'package:wust_life/themes/theme_helper.dart';
+import 'package:wust_life/components/class_card.dart';
+import 'package:wust_life/util/date_util.dart';
 
 import 'card_space_widget.dart';
 
@@ -47,8 +47,8 @@ class TimeTableClass extends StatelessWidget {
       children: [
         TimeTableLeft(),
       ]..addAll(getThisWeek(this.dateTime, 1).map(
-          (e) => buildSingleDayColumn(classLists, e, thisWeek,
-              classCardHeight, classCardPadding),
+          (e) => buildSingleDayColumn(
+              classLists, e, thisWeek, classCardHeight, classCardPadding),
         )),
     );
   }
@@ -60,8 +60,7 @@ class TimeTableClass extends StatelessWidget {
       var findClass = classList
           .where((v) =>
               v.weekday == dateTime.weekday &&
-              v.startWeek <= todayWeek &&
-              v.endWeek >= todayWeek &&
+              v.week.split(" ").contains(todayWeek.toString()) &&
               v.startTime == i)
           .toList();
       if (findClass.length != 0) {
@@ -69,7 +68,7 @@ class TimeTableClass extends StatelessWidget {
         i += classEntity.lastTime;
         column.add(ClassCard(
           classLength: classEntity.lastTime,
-          background: Colors.blue,
+          background: Color(classEntity.color),
           classEntity: classEntity,
         ));
       } else {

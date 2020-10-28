@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:wuster/models/entity/class_entity.dart';
-import 'package:wuster/pages/class_table/child_view/time_table_class.dart';
-import 'package:wuster/pages/class_table/child_view/time_table_header.dart';
+import 'package:wust_life/models/entity/class_entity.dart';
+import 'package:wust_life/pages/class_table/child_view/time_table_class.dart';
+import 'package:wust_life/pages/class_table/child_view/time_table_header.dart';
 
 class TimeTableBody extends StatelessWidget {
   final int thisWeek;
@@ -11,7 +11,7 @@ class TimeTableBody extends StatelessWidget {
   const TimeTableBody({
     Key key,
     @required this.dateTime,
-    this.thisWeek = 1,
+    this.thisWeek = 5,
     this.classLists = const [],
   })  : assert(dateTime != null),
         super(key: key);

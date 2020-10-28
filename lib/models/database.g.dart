@@ -80,7 +80,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `ClassEntity` (`id` INTEGER, `className` TEXT, `teacher` TEXT, `classId` TEXT, `classRoom` TEXT, `startWeek` INTEGER, `endWeek` INTEGER, `weekday` INTEGER, `startTime` INTEGER, `lastTime` INTEGER, PRIMARY KEY (`id`))');
+            'CREATE TABLE IF NOT EXISTS `ClassEntity` (`id` INTEGER, `className` TEXT, `teacher` TEXT, `classId` TEXT, `classRoom` TEXT, `week` TEXT, `weekday` INTEGER, `startTime` INTEGER, `lastTime` INTEGER, `color` INTEGER, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -106,11 +106,11 @@ class _$ClassModelDao extends ClassModelDao {
                   'teacher': item.teacher,
                   'classId': item.classId,
                   'classRoom': item.classRoom,
-                  'startWeek': item.startWeek,
-                  'endWeek': item.endWeek,
+                  'week': item.week,
                   'weekday': item.weekday,
                   'startTime': item.startTime,
-                  'lastTime': item.lastTime
+                  'lastTime': item.lastTime,
+                  'color': item.color
                 }),
         _classEntityDeletionAdapter = DeletionAdapter(
             database,
@@ -122,11 +122,11 @@ class _$ClassModelDao extends ClassModelDao {
                   'teacher': item.teacher,
                   'classId': item.classId,
                   'classRoom': item.classRoom,
-                  'startWeek': item.startWeek,
-                  'endWeek': item.endWeek,
+                  'week': item.week,
                   'weekday': item.weekday,
                   'startTime': item.startTime,
-                  'lastTime': item.lastTime
+                  'lastTime': item.lastTime,
+                  'color': item.color
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -141,11 +141,11 @@ class _$ClassModelDao extends ClassModelDao {
       row['teacher'] as String,
       row['classId'] as String,
       row['classRoom'] as String,
-      row['startWeek'] as int,
-      row['endWeek'] as int,
       row['weekday'] as int,
       row['startTime'] as int,
-      row['lastTime'] as int);
+      row['lastTime'] as int,
+      row['color'] as int,
+      row['week'] as String);
 
   final InsertionAdapter<ClassEntity> _classEntityInsertionAdapter;
 

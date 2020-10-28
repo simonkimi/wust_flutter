@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:wuster/pages/class_table/class_table.dart';
-import 'package:wuster/pages/login/login.dart';
-import 'package:wuster/themes/theme_helper.dart';
+import 'package:wust_life/pages/class_table/class_table.dart';
+import 'package:wust_life/pages/login/login.dart';
+import 'package:wust_life/themes/theme_helper.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: '科大恒大楼',
+      title: 'Wust Life',
       theme: primaryTheme,
       darkTheme: darkTheme,
       home: LoginPage(),

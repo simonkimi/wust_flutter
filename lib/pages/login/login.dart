@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wuster/pages/login/child_view/welcome.dart';
-import 'package:wuster/themes/theme_helper.dart';
+import 'package:wust_life/pages/login/child_view/welcome.dart';
+import 'package:wust_life/themes/theme_helper.dart';
 import 'child_view/sign_form.dart';
 
 class LoginPage extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wuster/util/date_util.dart';
-import 'package:wuster/themes/theme_helper.dart';
+import 'package:wust_life/util/date_util.dart';
+import 'package:wust_life/themes/theme_helper.dart';
 
 class TimeTableHeader extends StatelessWidget {
   final DateTime dateTime;

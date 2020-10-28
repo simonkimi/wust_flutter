@@ -5,6 +5,7 @@ class IconText extends StatelessWidget {
   final Icon icon;
   final double iconSize;
   final Axis direction;
+  final bool offstage;
 
   final EdgeInsetsGeometry iconPadding;
   final TextStyle style;
@@ -23,7 +24,8 @@ class IconText extends StatelessWidget {
       this.softWrap,
       this.iconPadding = EdgeInsets.zero,
       this.textAlign,
-      this.overflow = TextOverflow.ellipsis})
+      this.overflow = TextOverflow.ellipsis,
+      this.offstage})
       : assert(direction != null),
         assert(overflow != null),
         super(key: key);
