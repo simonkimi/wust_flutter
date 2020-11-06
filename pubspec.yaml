@@ -31,4 +31,5 @@ flutter:
     - assets/icons/password.svg
     - assets/images/setu.png
     - assets/images/l2.png
+    - assets/keys/secret.key
 
