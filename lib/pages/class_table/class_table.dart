@@ -67,10 +67,10 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
         child: buildBody(),
         decoration: Theme.of(context).brightness == Brightness.light
             ? BoxDecoration(
-                // image: DecorationImage(
-                //   image: AssetImage("assets/images/setu.png"),
-                //   fit: BoxFit.cover,
-                // ),
+                image: DecorationImage(
+                  image: AssetImage("assets/images/setu.png"),
+                  fit: BoxFit.cover,
+                ),
               )
             : BoxDecoration(),
       ),

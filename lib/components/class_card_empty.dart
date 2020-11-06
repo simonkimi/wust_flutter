@@ -1,34 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:wust_life/pages/class_table/child_view/card_space_widget.dart';
 
+
 class ClassCardEmpty extends StatefulWidget {
   @override
   _ClassCardEmptyState createState() => _ClassCardEmptyState();
 }
 
-class _ClassCardEmptyState extends State<ClassCardEmpty>
-    with SingleTickerProviderStateMixin {
-  AnimationController cardShowController;
-  Animation<double> cardAnimation;
-  bool isShow = false;
-
-  @override
-  void initState() {
-    super.initState();
-    cardShowController = AnimationController(
-      duration: Duration(milliseconds: 100),
-      lowerBound: 0.0,
-      upperBound: 1.0,
-      vsync: this,
-    );
-    cardAnimation = Tween(begin: 0.0, end: 1.0).animate(cardShowController);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    cardShowController.dispose();
-  }
+class _ClassCardEmptyState extends State<ClassCardEmpty> {
+  var opacity = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +17,21 @@ class _ClassCardEmptyState extends State<ClassCardEmpty>
         InheritedClassSpaceWidget.of(context).classCardPadding;
     return Listener(
       onPointerUp: (_) {
-        cardShowController.reverse();
+        setState(() {
+          opacity = 0.0;
+        });
       },
       child: GestureDetector(
         onTapDown: (_) {
-          cardShowController.forward();
+          setState(() {
+            opacity = 0.8;
+          });
         },
-        child: FadeTransition(
+        onDoubleTap: () {
+        },
+        child: AnimatedOpacity(
+          opacity: opacity,
+          duration: Duration(milliseconds: 100),
           child: Container(
             height: classCardHeight,
             margin: EdgeInsets.only(bottom: classCardPadding),
@@ -59,10 +47,8 @@ class _ClassCardEmptyState extends State<ClassCardEmpty>
               ),
             ),
           ),
-          opacity: cardAnimation,
         ),
       ),
     );
   }
 }
-
