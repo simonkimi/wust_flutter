@@ -1,9 +1,11 @@
+import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:wust_life/pages/class_table/class_table.dart';
 import 'package:wust_life/pages/login/login.dart';
 import 'package:wust_life/themes/theme_helper.dart';
 
 void main() {
+  LogUtil.init(tag: "WustLife", isDebug: true);
   runApp(MyApp());
 }
 

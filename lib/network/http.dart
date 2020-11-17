@@ -1,7 +1,10 @@
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:wust_life/util/debug.dart';
-import 'dart:io';
+import 'package:flutter/services.dart' show rootBundle;
+import 'interceptor/dio_crypto.dart';
+import 'interceptor/dio_encode.dart';
+import 'interceptor/dio_logger.dart';
 
 class Http {
   static final Http _http = Http._internal();
@@ -20,10 +23,19 @@ class Http {
 
   Http._internal() {
     // ko no DIO da
-    _dio = Dio()..options.connectTimeout = 10000;
+    _dio = Dio()
+      ..options.connectTimeout = 10000
+      ..options.baseUrl = remoteUrl
+      ..interceptors.add(DioEncodeInterceptor())
+      ..interceptors.add(DioLoggerInterceptor());
+
+    rootBundle
+        .loadString('assets/keys/secret.key')
+        .then((value) => _dio.interceptors.add(DioSecureInterceptor(value)));
+    initDioDebug();
   }
 
-  Future<void> initDio() async {
+  initDioDebug() async {
     if (isDebugMode()) {
       // fiddler
       if (await connectLocalhost("8888")) {
@@ -33,27 +45,19 @@ class Http {
         };
       }
       // localhost
-      _dio.options.baseUrl =
-          await connectLocalhost("8000") ? localBaseUrl : remoteUrl;
+      if (await connectLocalhost("8000")) {
+        _dio.options.baseUrl = localBaseUrl;
+      }
     }
   }
 
-  Future<String> get<T>() async {
-    var response = await _dio.get<List<int>>("",
-        options: Options(responseType: ResponseType.bytes));
-    var encode = (response.headers.map["encode"] ?? [""])[0];
-    var crypto = encode.split(",");
-    var bytes = response.data;
-    if (crypto.contains("zlib")) {
-      var zlib = ZLibCodec();
-      bytes = zlib.decode(response.data);
-    }
-    if (crypto.contains("gzip")) {
-      var gzip = GZipCodec();
-      bytes = gzip.decode(response.data);
-    }
+  Future<String> get(path) async {
+    var response = await _dio.get(path);
+    return String.fromCharCodes(response.data);
+  }
 
-
-    return String.fromCharCodes(bytes);
+  Future<String> post(String path, dynamic data) async {
+    var response = await _dio.post(path, data: data);
+    return String.fromCharCodes(response.data);
   }
 }
