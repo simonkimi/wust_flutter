@@ -30,9 +30,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/icons/idcard.svg
-    - assets/icons/password.svg
-    - assets/images/setu.png
-    - assets/images/l2.png
-    - assets/keys/secret.key
+    - assets/icons/
+    - assets/images/
+    - assets/keys/
 

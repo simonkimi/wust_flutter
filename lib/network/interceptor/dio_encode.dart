@@ -3,12 +3,6 @@ import 'package:dio/dio.dart';
 
 class DioEncodeInterceptor extends Interceptor {
   @override
-  Future onRequest(RequestOptions options) async {
-    options.responseType = ResponseType.bytes;
-    return options;
-  }
-
-  @override
   Future onResponse(Response response) async {
     var encode = (response.headers.map["encode"] ?? [""])[0];
     var crypto = encode.split(",");

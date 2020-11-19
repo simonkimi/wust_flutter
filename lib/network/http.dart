@@ -2,9 +2,11 @@ import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:wust_life/util/debug.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'interceptor/dio_backend_err.dart';
 import 'interceptor/dio_crypto.dart';
 import 'interceptor/dio_encode.dart';
 import 'interceptor/dio_logger.dart';
+import 'interceptor/dio_login.dart';
 
 class Http {
   static final Http _http = Http._internal();
@@ -27,7 +29,9 @@ class Http {
       ..options.connectTimeout = 10000
       ..options.baseUrl = remoteUrl
       ..interceptors.add(DioEncodeInterceptor())
-      ..interceptors.add(DioLoggerInterceptor());
+      ..interceptors.add(DioBackendErrInterceptor())
+      ..interceptors.add(DioLoggerInterceptor())
+      ..interceptors.add(DioLoginInterceptor(_dio));
 
     rootBundle
         .loadString('assets/keys/secret.key')
@@ -52,12 +56,14 @@ class Http {
   }
 
   Future<String> get(path) async {
-    var response = await _dio.get(path);
+    var response = await _dio.get<List<int>>(path,
+        options: Options(responseType: ResponseType.bytes));
     return String.fromCharCodes(response.data);
   }
 
   Future<String> post(String path, dynamic data) async {
-    var response = await _dio.post(path, data: data);
+    var response = await _dio.post<List<int>>(path,
+        data: data, options: Options(responseType: ResponseType.bytes));
     return String.fromCharCodes(response.data);
   }
 }

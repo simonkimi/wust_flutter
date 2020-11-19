@@ -1,17 +1,49 @@
+import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:flustars/flustars.dart';
+import 'package:wust_life/network/bean/login_entity.dart';
+import 'package:flutter/services.dart';
+import 'package:wust_life/util/debug.dart';
 
 class DioLoginInterceptor extends Interceptor {
-  String token;
+  String token = "";
+  final Dio dio;
+
+  DioLoginInterceptor(this.dio);
 
   @override
   Future onRequest(RequestOptions options) async {
-    // TODO 验证是否有Token, 进行登录请求
+    if (token.length != 32) {
+      await login();
+    }
+    options.headers['authorization'] = token;
+    return options;
   }
 
   @override
   Future onError(DioError err) async {
     if (err.response.statusCode == 401) {
-      // TODO 重新进行身份认证
+      await login();
     }
+    return err;
+  }
+
+  Future<void> login() async {
+    var defaultUser;
+    if (isDebugMode()) {
+      // 测试所用用户
+      defaultUser = (await rootBundle.loadString("assets/key/user.key")).split("|");
+    } else {
+      defaultUser = "admin|admin";
+    }
+    var username = SpUtil.getString("username", defValue: defaultUser[0]);
+    var password = SpUtil.getString("password", defValue: defaultUser[1]);
+    var response = await dio.post("http://127.0.0.1:8000/user/",
+        data: FormData.fromMap({"username": username, "password": password}),
+        options: Options(responseType: ResponseType.bytes));
+
+    token = LoginEntity()
+        .fromJson(json.decode(String.fromCharCodes(response.data)))
+        .token;
   }
 }

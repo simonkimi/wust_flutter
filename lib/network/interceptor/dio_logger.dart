@@ -10,7 +10,7 @@ class DioLoggerInterceptor extends Interceptor {
 
   @override
   Future onError(DioError err) async {
-    LogUtil.e("请求错误: ${err.request.path} ${err.message}",
+    LogUtil.e("请求错误: ${err.request.path} \n ${err.message}",
         tag: "DioLoggerInterceptor");
     return err;
   }

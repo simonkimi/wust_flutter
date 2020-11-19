@@ -4,8 +4,10 @@ import 'package:wust_life/pages/class_table/class_table.dart';
 import 'package:wust_life/pages/login/login.dart';
 import 'package:wust_life/themes/theme_helper.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   LogUtil.init(tag: "WustLife", isDebug: true);
+  await SpUtil.getInstance();
   runApp(MyApp());
 }
 
