@@ -18,4 +18,9 @@ class DioEncodeInterceptor extends Interceptor {
     response.data = bytes;
     return response;
   }
+
+  @override
+  Future onRequest(RequestOptions options) async {
+    return options;
+  }
 }

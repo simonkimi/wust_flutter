@@ -16,3 +16,5 @@ const kClassTimeRange = {
     ["20:50", "22:30"]
   ]
 };
+
+const localHost = "192.168.2.158";

@@ -1,13 +1,16 @@
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
+import 'package:wust_life/network/http.dart';
 import 'package:wust_life/pages/class_table/class_table.dart';
 import 'package:wust_life/pages/login/login.dart';
 import 'package:wust_life/themes/theme_helper.dart';
+import 'package:wust_life/util/debug.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  LogUtil.init(tag: "WustLife", isDebug: true);
+  LogUtil.init(tag: "WustLife", isDebug: isDebugMode());
   await SpUtil.getInstance();
+  await Http().initDio();
   runApp(MyApp());
 }
 

@@ -2,6 +2,7 @@ import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:wust_life/util/debug.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import '../constants.dart';
 import 'interceptor/dio_backend_err.dart';
 import 'interceptor/dio_crypto.dart';
 import 'interceptor/dio_encode.dart';
@@ -15,31 +16,28 @@ class Http {
     return _http;
   }
 
-  final fiddlerProxy = "PROXY 192.168.2.199:8888";
-  final localBaseUrl = "http://192.168.2.199:8000";
+  final fiddlerProxy = "PROXY $localHost:8888";
+  final localBaseUrl = "http://$localHost:8000";
   final remoteUrl = "";
 
   Dio _dio;
   var isLogin = false;
   var token = "";
 
-  Http._internal() {
+  Http._internal();
+
+  initDio() async {
     // ko no DIO da
     _dio = Dio()
       ..options.connectTimeout = 10000
       ..options.baseUrl = remoteUrl
       ..interceptors.add(DioEncodeInterceptor())
       ..interceptors.add(DioBackendErrInterceptor())
-      ..interceptors.add(DioLoggerInterceptor())
-      ..interceptors.add(DioLoginInterceptor(_dio));
+      ..interceptors.add(DioLoggerInterceptor());
 
-    rootBundle
-        .loadString('assets/keys/secret.key')
-        .then((value) => _dio.interceptors.add(DioSecureInterceptor(value)));
-    initDioDebug();
-  }
-
-  initDioDebug() async {
+    _dio.interceptors.add(DioLoginInterceptor(_dio));
+    _dio.interceptors.add(DioSecureInterceptor(
+        await rootBundle.loadString('assets/keys/secret.key')));
     if (isDebugMode()) {
       // fiddler
       if (await connectLocalhost("8888")) {

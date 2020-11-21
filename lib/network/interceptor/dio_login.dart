@@ -13,16 +13,16 @@ class DioLoginInterceptor extends Interceptor {
 
   @override
   Future onRequest(RequestOptions options) async {
-    if (token.length != 32) {
+    if (token.length != 32 && !options.path.contains("user")) {
       await login();
     }
-    options.headers['authorization'] = token;
+    options.headers['authorization'] = "Token $token";
     return options;
   }
 
   @override
   Future onError(DioError err) async {
-    if (err.response.statusCode == 401) {
+    if (err.response?.statusCode == 401) {
       await login();
     }
     return err;
@@ -32,16 +32,15 @@ class DioLoginInterceptor extends Interceptor {
     var defaultUser;
     if (isDebugMode()) {
       // 测试所用用户
-      defaultUser = (await rootBundle.loadString("assets/key/user.key")).split("|");
+      defaultUser = (await rootBundle.loadString("assets/keys/user.key")).split("|");
     } else {
       defaultUser = "admin|admin";
     }
     var username = SpUtil.getString("username", defValue: defaultUser[0]);
     var password = SpUtil.getString("password", defValue: defaultUser[1]);
-    var response = await dio.post("http://127.0.0.1:8000/user/",
+    var response = await dio.post<List<int>>("user",
         data: FormData.fromMap({"username": username, "password": password}),
         options: Options(responseType: ResponseType.bytes));
-
     token = LoginEntity()
         .fromJson(json.decode(String.fromCharCodes(response.data)))
         .token;
