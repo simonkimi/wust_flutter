@@ -17,8 +17,8 @@ class Http {
   }
 
   final fiddlerProxy = "PROXY $localHost:8888";
-  final localBaseUrl = "http://$localHost:8000";
-  final remoteUrl = "";
+  final localBaseUrl = "http://$localHost:8000/";
+  final remoteUrl = "http://$localHost:8000/";
 
   Dio _dio;
   var isLogin = false;
