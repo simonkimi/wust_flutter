@@ -1,38 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:wust_life/components/popup_menu.dart';
-import 'package:wust_life/models/entity/class_entity.dart';
-import 'package:wust_life/pages/class_table/child_view/time_table_body.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:wust_life/models/helper/class_helper.dart';
 import 'package:wust_life/test/test_table_data.dart';
+import 'package:wust_life/ui/components/popup_menu.dart';
+import 'package:wust_life/ui/pages/class_table/state/class_store.dart';
 
-class ClassTimeTablePage extends StatefulWidget {
+import 'child_view/time_table_body.dart';
+
+
+class ClassTimeTablePage extends StatelessWidget {
   static String routeName = "classTimeTable";
+  final store = classStore;
 
-  @override
-  _ClassTimeTablePageState createState() => _ClassTimeTablePageState();
-}
-
-mixin ClassTimeTablePageState<T extends StatefulWidget> on State<T> {
-  var isTransport = true;
-
-  List<ClassEntity> classList = [];
-  int thisWeek = 0;
-  int displayWeek = 0;
-
-  setTransport() {
-    setState(() {
-      isTransport = !isTransport;
-    });
-  }
-}
-
-class _ClassTimeTablePageState extends State<ClassTimeTablePage>
-    with ClassTimeTablePageState {
   @override
   Widget build(BuildContext context) {
+    // 初始化数据
+    classStore.setClassList(parseClassFromHtml(classTableHtml));
+
+
     return Scaffold(
-      extendBodyBehindAppBar: isTransport,
+      extendBodyBehindAppBar: store.transportTheme,
       appBar: buildAppBar(context),
       body: buildBody(context),
     );
@@ -41,11 +29,7 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
   Container buildBody(BuildContext context) {
     return Container(
       child: SafeArea(
-        child: TimeTableBody(
-          dateTime: DateTime.now(),
-          thisWeek: 5,
-          classLists: parseClassFromHtml(classTableHtml),
-        ),
+        child: TimeTableBody(),
       ),
       decoration: Theme.of(context).brightness == Brightness.light
           ? BoxDecoration(
@@ -58,11 +42,11 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
     );
   }
 
-  AppBar buildAppBar(BuildContext context) {
+  Widget buildAppBar(BuildContext context) {
     return AppBar(
       backgroundColor:
-          isTransport ? Colors.black26 : Theme.of(context).primaryColor,
-      elevation: isTransport ? 0 : 4,
+      classStore.transportTheme ? Colors.black26 : Theme.of(context).primaryColor,
+      elevation: classStore.transportTheme ? 0 : 4,
       automaticallyImplyLeading: false,
       title: Text(
         "我的课表",
@@ -72,7 +56,7 @@ class _ClassTimeTablePageState extends State<ClassTimeTablePage>
         IconButton(
           icon: Icon(Icons.compare_arrows),
           onPressed: () {
-            setTransport();
+            classStore.setTransport(!classStore.transportTheme);
           },
         ),
         PopupMenuButton(

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:wust_life/ui/themes/theme_helper.dart';
 import 'package:wust_life/util/widget_util.dart';
 import 'package:wust_life/constants.dart';
-import 'package:wust_life/themes/theme_helper.dart';
 
 import 'card_space_widget.dart';
 
+
+/// 构建课程表左边时间表的事件
 class TimeTableLeft extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

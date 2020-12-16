@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wust_life/pages/class_table/child_view/card_space_widget.dart';
+import 'package:wust_life/ui/pages/class_table/child_view/card_space_widget.dart';
 
 
 class ClassCardEmpty extends StatefulWidget {

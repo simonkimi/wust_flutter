@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:wust_life/components/icon_text.dart';
 import 'package:wust_life/models/entity/class_entity.dart';
-import 'package:wust_life/pages/class_table/child_view/card_space_widget.dart';
+import 'package:wust_life/ui/pages/class_table/child_view/card_space_widget.dart';
 
+import 'icon_text.dart';
 class ClassCard extends StatelessWidget {
   final ClassEntity classEntity;
   final Color background;

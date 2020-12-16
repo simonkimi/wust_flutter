@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:wust_life/pages/login/child_view/welcome.dart';
-import 'package:wust_life/themes/theme_helper.dart';
+import 'package:wust_life/ui/themes/theme_helper.dart';
 import 'child_view/sign_form.dart';
+import 'child_view/welcome.dart';
 
 class LoginPage extends StatelessWidget {
   static String routeName = "login";
