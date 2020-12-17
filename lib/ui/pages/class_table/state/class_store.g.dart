@@ -92,21 +92,6 @@ mixin _$ClassStore on ClassStoreBase, Store {
     });
   }
 
-  final _$transportThemeAtom = Atom(name: 'ClassStoreBase.transportTheme');
-
-  @override
-  bool get transportTheme {
-    _$transportThemeAtom.reportRead();
-    return super.transportTheme;
-  }
-
-  @override
-  set transportTheme(bool value) {
-    _$transportThemeAtom.reportWrite(value, super.transportTheme, () {
-      super.transportTheme = value;
-    });
-  }
-
   final _$ClassStoreBaseActionController =
       ActionController(name: 'ClassStoreBase');
 
@@ -116,17 +101,6 @@ mixin _$ClassStore on ClassStoreBase, Store {
         name: 'ClassStoreBase.setDisplayWeek');
     try {
       return super.setDisplayWeek(week);
-    } finally {
-      _$ClassStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void setTransport(bool value) {
-    final _$actionInfo = _$ClassStoreBaseActionController.startAction(
-        name: 'ClassStoreBase.setTransport');
-    try {
-      return super.setTransport(value);
     } finally {
       _$ClassStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -151,7 +125,6 @@ thisWeek: ${thisWeek},
 displayWeek: ${displayWeek},
 startWeekDay: ${startWeekDay},
 classList: ${classList},
-transportTheme: ${transportTheme},
 displayWeekDate: ${displayWeekDate}
     ''';
   }

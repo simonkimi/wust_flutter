@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wust_life/models/entity/class_entity.dart';
 import 'package:wust_life/ui/pages/class_table/child_view/time_table_class.dart';
 import 'package:wust_life/ui/pages/class_table/child_view/time_table_header.dart';
 

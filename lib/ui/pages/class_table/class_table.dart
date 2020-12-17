@@ -8,7 +8,6 @@ import 'package:wust_life/ui/pages/class_table/state/class_store.dart';
 
 import 'child_view/time_table_body.dart';
 
-
 class ClassTimeTablePage extends StatelessWidget {
   static String routeName = "classTimeTable";
   final store = classStore;
@@ -17,12 +16,14 @@ class ClassTimeTablePage extends StatelessWidget {
   Widget build(BuildContext context) {
     // 初始化数据
     classStore.setClassList(parseClassFromHtml(classTableHtml));
-
-
-    return Scaffold(
-      extendBodyBehindAppBar: store.transportTheme,
-      appBar: buildAppBar(context),
-      body: buildBody(context),
+    return Observer(
+      builder: (_) {
+        return Scaffold(
+          extendBodyBehindAppBar: false,
+          appBar: buildAppBar(context),
+          body: buildBody(context),
+        );
+      },
     );
   }
 
@@ -31,22 +32,21 @@ class ClassTimeTablePage extends StatelessWidget {
       child: SafeArea(
         child: TimeTableBody(),
       ),
-      decoration: Theme.of(context).brightness == Brightness.light
-          ? BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/setu.png"),
-                fit: BoxFit.cover,
-              ),
-            )
-          : BoxDecoration(),
+      // decoration: Theme.of(context).brightness == Brightness.light
+      //     ? BoxDecoration(
+      //         image: DecorationImage(
+      //           image: AssetImage("assets/images/setu.png"),
+      //           fit: BoxFit.cover,
+      //         ),
+      //       )
+      //     : BoxDecoration(),
     );
   }
 
   Widget buildAppBar(BuildContext context) {
     return AppBar(
-      backgroundColor:
-      classStore.transportTheme ? Colors.black26 : Theme.of(context).primaryColor,
-      elevation: classStore.transportTheme ? 0 : 4,
+      backgroundColor: Theme.of(context).primaryColor,
+      elevation: 4,
       automaticallyImplyLeading: false,
       title: Text(
         "我的课表",
@@ -55,9 +55,7 @@ class ClassTimeTablePage extends StatelessWidget {
       actions: [
         IconButton(
           icon: Icon(Icons.compare_arrows),
-          onPressed: () {
-            classStore.setTransport(!classStore.transportTheme);
-          },
+          onPressed: () {},
         ),
         PopupMenuButton(
           itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[

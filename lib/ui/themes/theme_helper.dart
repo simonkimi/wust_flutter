@@ -10,12 +10,10 @@ const kAnimationDuration = Duration(milliseconds: 250);
 const kTimeTableLeftFlex = 2;
 const kTimeTableRightFlex = 3;
 
-
 final primaryTheme = ThemeData(
   brightness: Brightness.light,
-  primaryColor: Colors.purple,
-  accentColor: Colors.purpleAccent,
-  buttonColor: Colors.purple,
+  primaryColor: Color(0xFF686bdd),
+  accentColor: Color(0xFF686bdd),
   scaffoldBackgroundColor: Colors.white,
   textTheme: TextTheme(
     headline1: TextStyle(
@@ -27,9 +25,8 @@ final primaryTheme = ThemeData(
 
 final darkTheme = ThemeData(
   brightness: Brightness.dark,
-  buttonColor: Colors.purple[300],
   primaryColor: Color(0xFF1c1c1c),
-  accentColor: Colors.purpleAccent,
+  accentColor: Color(0xFF686bdd),
   scaffoldBackgroundColor: Color(0xFF121212),
   textTheme: TextTheme(
     headline1: TextStyle(
@@ -43,6 +40,6 @@ bool isDarkMode(BuildContext context) {
   return Theme.of(context).brightness == Brightness.dark;
 }
 
-T accordingToTheme<T>(BuildContext context, T brightness, T dark) {
+T byBrightness<T>(BuildContext context, T brightness, T dark) {
   return Theme.of(context).brightness == Brightness.light ? brightness : dark;
 }

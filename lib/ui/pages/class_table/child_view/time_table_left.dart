@@ -25,7 +25,7 @@ class TimeTableLeft extends StatelessWidget {
     return Container(
       height: classCardHeight,
       width: double.infinity,
-      color: accordingToTheme(context, Colors.white24, Colors.white10),
+      color: byBrightness(context, Colors.white24, Colors.white10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
