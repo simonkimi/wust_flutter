@@ -1,7 +1,7 @@
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:wust_life/util/debug.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:wust_life/util/secret.dart' show flag;
 import '../constants.dart';
 import 'interceptor/dio_backend_err.dart';
 import 'interceptor/dio_crypto.dart';
@@ -36,8 +36,7 @@ class Http {
       ..interceptors.add(DioLoggerInterceptor());
 
     _dio.interceptors.add(DioLoginInterceptor(_dio));
-    _dio.interceptors.add(DioSecureInterceptor(
-        await rootBundle.loadString('assets/keys/secret.key')));
+    _dio.interceptors.add(DioSecureInterceptor(flag));
     if (isDebugMode()) {
       // fiddler
       if (await connectLocalhost("8888")) {
