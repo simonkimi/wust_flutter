@@ -7,6 +7,7 @@ import 'package:wust_life/util/debug.dart';
 import 'package:wust_life/util/log_util.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Http().initDio();
   LogUtil.init(tag: "WustLife", isDebug: isDebugMode());
   runApp(MyApp());
