@@ -1,5 +1,9 @@
-import 'package:wust_life/generated/json/base/json_convert_content.dart';
 
-class LoginEntity with JsonConvert<LoginEntity> {
+
+class LoginEntity {
 	String token;
+
+	LoginEntity.fromJson(Map<String, dynamic> json) {
+		token = json["token"];
+	}
 }

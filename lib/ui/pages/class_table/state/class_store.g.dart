@@ -92,6 +92,51 @@ mixin _$ClassStore on ClassStoreBase, Store {
     });
   }
 
+  final _$classCardHeightAtom = Atom(name: 'ClassStoreBase.classCardHeight');
+
+  @override
+  double get classCardHeight {
+    _$classCardHeightAtom.reportRead();
+    return super.classCardHeight;
+  }
+
+  @override
+  set classCardHeight(double value) {
+    _$classCardHeightAtom.reportWrite(value, super.classCardHeight, () {
+      super.classCardHeight = value;
+    });
+  }
+
+  final _$classCardPaddingAtom = Atom(name: 'ClassStoreBase.classCardPadding');
+
+  @override
+  double get classCardPadding {
+    _$classCardPaddingAtom.reportRead();
+    return super.classCardPadding;
+  }
+
+  @override
+  set classCardPadding(double value) {
+    _$classCardPaddingAtom.reportWrite(value, super.classCardPadding, () {
+      super.classCardPadding = value;
+    });
+  }
+
+  final _$classMainHeightAtom = Atom(name: 'ClassStoreBase.classMainHeight');
+
+  @override
+  double get classMainHeight {
+    _$classMainHeightAtom.reportRead();
+    return super.classMainHeight;
+  }
+
+  @override
+  set classMainHeight(double value) {
+    _$classMainHeightAtom.reportWrite(value, super.classMainHeight, () {
+      super.classMainHeight = value;
+    });
+  }
+
   final _$ClassStoreBaseActionController =
       ActionController(name: 'ClassStoreBase');
 
@@ -118,6 +163,17 @@ mixin _$ClassStore on ClassStoreBase, Store {
   }
 
   @override
+  void setCardDisplay(double height, double padding) {
+    final _$actionInfo = _$ClassStoreBaseActionController.startAction(
+        name: 'ClassStoreBase.setCardDisplay');
+    try {
+      return super.setCardDisplay(height, padding);
+    } finally {
+      _$ClassStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 startDate: ${startDate},
@@ -125,6 +181,9 @@ thisWeek: ${thisWeek},
 displayWeek: ${displayWeek},
 startWeekDay: ${startWeekDay},
 classList: ${classList},
+classCardHeight: ${classCardHeight},
+classCardPadding: ${classCardPadding},
+classMainHeight: ${classMainHeight},
 displayWeekDate: ${displayWeekDate}
     ''';
   }

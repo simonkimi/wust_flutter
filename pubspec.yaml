@@ -16,7 +16,6 @@ dependencies:
   floor: ^0.14.0
   html: ^0.14.0+4
   crypto: ^2.1.5
-  flustars: ^0.3.3
 
   mobx: ^1.2.1+4
   flutter_mobx: ^1.1.0+2

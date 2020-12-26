@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wust_life/ui/pages/class_table/child_view/card_space_widget.dart';
-
+import 'package:wust_life/ui/pages/class_table/state/class_store.dart'
+    show classStore;
 
 class ClassCardEmpty extends StatefulWidget {
   @override
@@ -12,9 +12,8 @@ class _ClassCardEmptyState extends State<ClassCardEmpty> {
 
   @override
   Widget build(BuildContext context) {
-    var classCardHeight = InheritedClassSpaceWidget.of(context).classCardHeight;
-    var classCardPadding =
-        InheritedClassSpaceWidget.of(context).classCardPadding;
+    var classCardHeight = classStore.classCardHeight;
+    var classCardPadding = classStore.classCardPadding;
     return Listener(
       onPointerUp: (_) {
         setState(() {
@@ -27,8 +26,7 @@ class _ClassCardEmptyState extends State<ClassCardEmpty> {
             opacity = 0.8;
           });
         },
-        onDoubleTap: () {
-        },
+        onDoubleTap: () {},
         child: AnimatedOpacity(
           opacity: opacity,
           duration: Duration(milliseconds: 100),

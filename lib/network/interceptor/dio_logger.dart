@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flustars/flustars.dart';
+import 'package:wust_life/util/log_util.dart';
 
 class DioLoggerInterceptor extends Interceptor {
   @override

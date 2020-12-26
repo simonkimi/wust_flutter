@@ -1,33 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:wust_life/models/entity/class_entity.dart';
-import 'package:wust_life/ui/components/class_card.dart';
-import 'package:wust_life/ui/components/class_card_empty.dart';
 import 'package:wust_life/ui/pages/class_table/child_view/time_table_left.dart';
 import 'package:wust_life/ui/themes/theme_helper.dart';
 import 'package:wust_life/util/date_util.dart';
 import 'package:wust_life/ui/pages/class_table/state/class_store.dart';
 
-import 'card_space_widget.dart';
+import 'class_card.dart';
+import 'class_card_empty.dart';
+
+
 
 class TimeTableClass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+
     var classCardHeight = size.height / 6;
     var classCardPadding = kPrimaryPadding / 5;
-    var classMainHeight = classCardHeight * 6 + classCardPadding * 5;
+
+    classStore.setCardDisplay(classCardHeight, classCardPadding);
+
 
     return Expanded(
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(
           margin: EdgeInsets.only(top: 5),
-          child: InheritedClassSpaceWidget(
-            classCardHeight: classCardHeight,
-            classCardPadding: classCardPadding,
-            classMainHeight: classMainHeight,
-            child: buildTableRow(context, classCardHeight, classCardPadding),
-          ),
+          child: buildTableRow(context, classCardHeight, classCardPadding),
         ),
       ),
     );

@@ -16,3 +16,7 @@ bool isSameDay(DateTime time1, DateTime time2) {
       time1.month == time2.month &&
       time1.day == time2.day;
 }
+
+int currentTimeMillis() {
+  return new DateTime.now().millisecondsSinceEpoch;
+}

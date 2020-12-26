@@ -25,6 +25,17 @@ abstract class ClassStoreBase with Store {
   @observable
   ObservableList<ClassEntity> classList = ObservableList(); // 课程表
 
+
+  @observable
+  double classCardHeight;  // 卡片高度
+
+  @observable
+  double classCardPadding;  // 卡片距离
+
+  @observable
+  double classMainHeight;  // 主高度
+
+
   @action
   void setDisplayWeek(int week) {
     displayWeek = week;
@@ -34,6 +45,13 @@ abstract class ClassStoreBase with Store {
   void setClassList(List<ClassEntity> value) {
     classList.clear();
     classList.addAll(value);
+  }
+
+  @action
+  void setCardDisplay(double height, double padding) {
+    classCardHeight = height;
+    classCardPadding = padding;
+    classMainHeight = height * 6 + padding * 5;
   }
 
   @computed

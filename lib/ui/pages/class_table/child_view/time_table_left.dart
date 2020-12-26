@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:wust_life/ui/pages/class_table/state/class_store.dart' show classStore;
 import 'package:wust_life/ui/themes/theme_helper.dart';
 import 'package:wust_life/util/widget_util.dart';
 import 'package:wust_life/constants.dart';
 
-import 'card_space_widget.dart';
 
 
 /// 构建课程表左边时间表的事件
@@ -21,9 +21,8 @@ class TimeTableLeft extends StatelessWidget {
   /// 构建左边时间单位
   Container buildLeftTime(BuildContext context, String startTime, String endTime) {
     var textStyle = TextStyle(fontSize: 10);
-    var classCardHeight = InheritedClassSpaceWidget.of(context).classCardHeight;
     return Container(
-      height: classCardHeight,
+      height: classStore.classCardHeight,
       width: double.infinity,
       color: byBrightness(context, Colors.white24, Colors.white10),
       child: Column(
@@ -44,13 +43,12 @@ class TimeTableLeft extends StatelessWidget {
   }
 
   List<Widget> buildLeftTimeList(BuildContext context, String schoolState) {
-    var classCardPadding = InheritedClassSpaceWidget.of(context).classCardPadding;
     return createDivider(
       kClassTimeRange[schoolState]
           .map((e) => buildLeftTime(context, e[0], e[1]))
           .toList(),
       SizedBox(
-        height: classCardPadding,
+        height: classStore.classCardPadding,
       ),
     );
   }

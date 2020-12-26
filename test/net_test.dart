@@ -1,8 +1,8 @@
-import 'package:flustars/flustars.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:wust_life/network/http.dart';
 import 'package:mockito/mockito.dart';
 import 'package:http/http.dart' as http;
+import 'package:wust_life/util/log_util.dart';
 
 
 class MockNet extends Mock implements http.Client {}

@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wust_life/models/entity/class_entity.dart';
-import 'package:wust_life/ui/pages/class_table/child_view/card_space_widget.dart';
+import 'package:wust_life/ui/pages/class_table/state/class_store.dart';
 
-import 'icon_text.dart';
+import '../../../components/icon_text.dart';
+
 class ClassCard extends StatelessWidget {
   final ClassEntity classEntity;
   final Color background;
@@ -20,9 +21,8 @@ class ClassCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var classCardHeight = InheritedClassSpaceWidget.of(context).classCardHeight;
-    var classCardPadding =
-        InheritedClassSpaceWidget.of(context).classCardPadding;
+    var classCardHeight = classStore.classCardHeight;
+    var classCardPadding = classStore.classCardPadding;
     var height = classCardHeight * classLength;
     if (classLength > 1) {
       height += (classLength - 1) * classCardPadding;
